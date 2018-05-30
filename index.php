@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<?php
+
+//require_once 'libs/Bootstrap.php';
+spl_autoload_register(function($class) {
+    if (file_exists("libs/$class.php")) {
+        require_once "libs/$class.php";
+    } else if (file_exists("config/$class.php")) {
+        "config/$class.php";
+    } else {
+        echo "$class not found!!!";
+        exit();
+    }
+});
+Session::init();
+setConfig();
+$app = new Bootstrap();
+$app->init();
+
+
+
+function setConfig() {
+    config::$server = 'localhost';
+    config::$database = 'theschool';
+    config::$user = 'root';
+    config::$password = '';
+    config::$salt_prefix = 'bonzo';
+    config::$salt_suffix = 'morgan';
+}
