@@ -24,7 +24,7 @@ class Bootstrap {
     }
 
     private function _parseParams() {
-        $uri = isset($_GET['uri']) ? $_GET['uri'] : 'Employees/index';
+        $uri = isset($_GET['uri']) ? $_GET['uri'] : 'theSchool/index';
         $uri = rtrim($uri, '/');
         $uri = explode('/', $uri);
       
