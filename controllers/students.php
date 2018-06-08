@@ -8,10 +8,18 @@ class Students extends Controller {
         
     }
     
-      public function Get(){
+    public function Get(){
         $result = $this->_model->Get();
         $this->_view->rightContent = $result;
         $this->_view->render("leftContainer", "rightContainer");
     }
+    
+    public function GetAll(){
+        $this->_view->rightContent = '';
+        $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
+        $this->_view->render('students/leftContainer','students/rightContainer');
+    }
+    
+    
 }
 
