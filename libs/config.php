@@ -2,7 +2,7 @@
 
 class Config {
 
-    const URL = "http://localhost:80/MesimaE/";
+    const URL = "http://localhost:80/theSchool/";
     // db info    
     public static $server;
     public static $database;
