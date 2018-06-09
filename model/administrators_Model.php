@@ -1,6 +1,6 @@
 <?php
 
-class Administrators extends Model{
+class Administrators_Model extends Model{
   
   function __contructor(){
     parent::__contructor();
@@ -95,7 +95,7 @@ class Administrators extends Model{
   }
 
   public function GetAll(){
-    $sql = "SELECT * FROM `theschool`.`students`;";
+    $sql = "SELECT * FROM `theschool`.`administrators`;";
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -110,10 +110,11 @@ class Administrators extends Model{
         $table .= "<div class='listItemWrapper'>";
         $table .= "<a href='administrators/Get/$value[ID]' target='_self'>";
         $table .= "<div>$value[ID]</div>";
-        $table .= "<div>$value[Name]</div>";
+        $table .= "<div>$value[name]</div>";
+        $table .= "<div>$value[role]</div>";
         $table .="<div>$value[phone]</div>";
         $table .="<div>$value[email]</div>";
-        $table .="<div>$value[profile_image]</div>";
+//        $table .="<div>$value[profile_image]</div>";
         $table .= "</a>";
         $table .= "</div>";
         $table .= "</li>";

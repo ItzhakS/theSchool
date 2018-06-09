@@ -2,8 +2,8 @@
 
 class Administrators extends Controller{
   
-  function __constructor(){
-    parent::__constructor();
+  function __construct(){
+    parent::__construct();
     parent::loadModel(__CLASS__);
   }
 
@@ -13,7 +13,7 @@ class Administrators extends Controller{
     $this->_view->render("leftContainer", "rightContainer");
 }
 
-public function GetAll(){
+  public function GetAll(){
     $this->_view->rightContent = '';
     $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
     $this->_view->render('students/leftContainer','students/rightContainer');
