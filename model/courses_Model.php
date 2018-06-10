@@ -95,7 +95,7 @@ Class Courses_Model extends Model {
   }
 
   public function GetAll(){
-    $sql = "SELECT * FROM `theschool`.`students`;";
+    $sql = "SELECT * FROM `theschool`.`courses`;";
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -110,7 +110,7 @@ Class Courses_Model extends Model {
         $table .= "<div class='listItemWrapper'>";
         $table .= "<a href='../Courses/Get/$value[ID]' target='_self'>";
         $table .= "<div>$value[ID]</div>";
-        $table .= "<div>$value[Name]</div>";
+        $table .= "<div>$value[name]</div>";
         $table .="<div>$value[description]</div>";
         $table .="<div>$value[image]</div>";
         $table .= "</a>";
