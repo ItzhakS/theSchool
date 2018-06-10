@@ -6,12 +6,12 @@ class Administrators_Model extends Model{
     parent::__contructor();
   }
 
-  public function Get($studentID){
+  public function Get($adminID){
     try {
         $sql = "SELECT * FROM `theschool`.`administrators` WHERE ID = :adminID;";
         $stmt = $this->db->prepare($sql);
-        if($studentID > 0){
-            $stmt->bindParam(':adminID', $studentID);
+        if($adminID >= 0){
+            $stmt->bindParam(':adminID', $adminID);
         } else {
             $stmt->bindParam(':adminID', $_POST['ID']);
         }
@@ -108,7 +108,7 @@ class Administrators_Model extends Model{
     foreach ($data as $key => $value) {
         $table .="<li class='adminListItem>";
         $table .= "<div class='listItemWrapper'>";
-        $table .= "<a href='administrators/Get/$value[ID]' target='_self'>";
+        $table .= "<a href='Get/$value[ID]' target='_self'>";
         $table .= "<div>$value[ID]</div>";
         $table .= "<div>$value[name]</div>";
         $table .= "<div>$value[role]</div>";

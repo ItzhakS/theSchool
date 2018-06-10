@@ -7,8 +7,8 @@ class Administrators extends Controller{
     parent::loadModel(__CLASS__);
   }
 
-  public function Get($adminID){
-    $result = $this->_model->Get();
+  public function Get($adminID = null){
+    $result = $this->_model->Get($adminID);
     $this->_view->rightContent = $result;
     $this->_view->render("leftContainer", "rightContainer");
 }
