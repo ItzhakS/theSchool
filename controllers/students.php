@@ -28,6 +28,19 @@ class Students extends Controller {
         $this->_view->rightContent = $result;
         $this->_view->render("leftContainer", "rightContainer");
     }
+
+    private function Insert(){
+        $this->_view->content = $this->_model->Insert();
+        $this->_view->render('Employees/index');
+    }
+    private function Update(){
+        $this->_view->content = $this->_model->Update();
+        $this->_view->render('Employees/index');
+    }
+    private function Delete(){
+        $this->_view->content = $this->_model->Delete();
+        $this->_view->render('Employees/index');
+    }
     
     public function GetAll(){
         $this->_view->rightContent = '';
