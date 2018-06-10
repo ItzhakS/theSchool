@@ -12,3 +12,4 @@
                 <h1>The School</h1>
             </div>
         </header>
+        <div class="mainContent">

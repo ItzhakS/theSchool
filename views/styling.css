@@ -26,17 +26,21 @@ div.banner{
 div.banner h1{
     margin-top: 5px;
 }
+.mainContent{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
 .leftContainer-wrapper{
     display: grid;
-    height: 400px;
-    width: 400px;
+    height: 100vh;
+    width: auto;
     border: 1px solid black;
     /*grid-column: ;*/
 }
 .rightContainer-wrapper{
     display: grid;
-    height: 400px;
-    width: 400px;
+    height: 100vh;
+    width: auto;
     border: 1px solid black;
     /*grid-column: ;*/
 }

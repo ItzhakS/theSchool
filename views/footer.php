@@ -1,4 +1,5 @@
 
+</div>
 <footer>
     <div class="footer">
         <p>The School, 2018</p>
