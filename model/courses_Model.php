@@ -6,12 +6,12 @@ Class Courses_Model extends Model {
     parent::__construct();
 }
 
-  public function Get($studentID){
+  public function Get($courseID = null){
     try {
         $sql = "SELECT * FROM `theschool`.`courses` WHERE ID = :courseID;";
         $stmt = $this->db->prepare($sql);
-        if($studentID > 0){
-            $stmt->bindParam(':courseID', $studentID);
+        if($courseID >= 0){
+            $stmt->bindParam(':courseID', $courseID);
         } else {
             $stmt->bindParam(':courseID', $_POST['ID']);
         }
@@ -104,16 +104,18 @@ Class Courses_Model extends Model {
 
   public function ToHTML(){
     $data = $this->result;
-    $table= "<ul class='studentsList'>";
+    $table= "<ul class='courseList'>";
     foreach ($data as $key => $value) {
-        $table .="<li class='studentListItem>";
-        $table .= "<div><a href='../Employees/CRUDALL/$value[ID]' target='_self'>";
+        $table .="<li class='courseListItem>";
+        $table .= "<div class='listItemWrapper'>";
+        $table .= "<a href='../Courses/Get/$value[ID]' target='_self'>";
         $table .= "<div>$value[ID]</div>";
         $table .= "<div>$value[Name]</div>";
-        $table .="<div>$value[phone]</div>";
-        $table .="<div>$value[email]</div>";
-        $table .="<div>$value[profile_image]</div>";
-        $table .= "</a></div></li>";
+        $table .="<div>$value[description]</div>";
+        $table .="<div>$value[image]</div>";
+        $table .= "</a>";
+        $table .= "</div>";
+        $table .= "</li>";
     }
     $table .= "</ul>";
     return $table;
