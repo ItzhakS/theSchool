@@ -47,6 +47,14 @@ class Students extends Controller {
         // $this->_view->rightContent = '';
         // $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
         // $this->_view->render('students/leftContainer','students/rightContainer');
+        /*
+        TheSchool::_view->ID = '';
+        TheSchool::_view->name = '';
+        TheSchool::_view->phone = '';
+        TheSchool::_view->email = '';
+        TheSchool::_view->profile_image = '';
+        TheSchool::_view->rightContent = '';
+        */
     }
     
     

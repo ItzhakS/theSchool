@@ -106,7 +106,7 @@ class Students_Model extends Model {
          $data = $this->result;
          $table= "<ul class='studentsList'>";
          foreach ($data as $key => $value) {
-            $table .="<li class='studentListItem>";
+            $table .="<li class='studentListItem'>";
             $table .= "<div><a href='../Employees/CRUDALL/$value[ID]' target='_self'>";
             $table .= "<div>$value[ID]</div>";
             $table .= "<div>$value[Name]</div>";

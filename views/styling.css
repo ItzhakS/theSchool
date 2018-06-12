@@ -22,9 +22,16 @@ div.banner{
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    -webkit-box-shadow: 0px 4px 11px 3px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 4px 11px 3px rgba(0,0,0,0.75);
-    box-shadow: 0px 4px 11px 3px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0.5px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0.5px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0.5px 10px 0px rgba(0,0,0,0.75);
+
+}
+.bannerLeft{
+    display: flex;
+    flex-flow: row;
+}
+.bannerRight{
 
 }
 .schoolLogo{
@@ -37,25 +44,61 @@ div.banner{
     background-color: #df7905;
 }
 .schoolLink{
-    height: 50px;
-    width: 70px;
-    display: flex;
+    margin-top: 5px;
+    height: 40px;
+    width: 73px;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+}
+.schoolLink a{
+    color: #000;
+    text-decoration: none;
+}
+.adminLink{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.adminLink a{
+    color: #000;
+    text-decoration: none;
 }
 .mainContent{
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
 }
+
 .leftContainer-wrapper{
-    display: grid;
-    height: 100vh;
+    margin-top: 15px;
+    height: 90vh;
     width: auto;
-    border: 1px solid black;
+    border-right: 1px solid black;
     /*grid-column: ;*/
 }
-.rightContainer-wrapper{
+
+.leftContainer{
     display: grid;
-    height: 100vh;
+    grid-template-columns: 1fr 1fr;
+}
+
+.rightContainer-wrapper{
+    height: 90vh;
     width: auto;
-    border: 1px solid black;
     /*grid-column: ;*/
+}
+
+.rightContainer{
+    margin-left: 10px;
+}
+
+li{
+    list-style: none; 
+}
+
+li a{
+    color: #000;
+    text-decoration: none;
+}
+
+.listitemwrapper:hover{
+    background-color: rgb(209, 209, 209);
 }

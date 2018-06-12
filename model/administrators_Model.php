@@ -60,14 +60,16 @@ class Administrators_Model extends Model{
         $sql = "UPDATE `theschool`.`administrators` SET `name` = :name,`phone` = :phone, `role` = :role, `email` = :email, `password` = :password, `profile_image` = :profile_image WHERE `ID` = :ID;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':ID', $_POST['ID']);
-        $stmt->bindParam(':Name', $_POST['Name']);
+        $stmt->bindParam(':name', $_POST['name']);
+        $stmt->bindParam(':role', $_POST['role']);
         $stmt->bindParam(':phone', $_POST['phone']);
+        $stmt->bindParam(':password', $_POST['password']);
         $stmt->bindParam(':email', $_POST['email']);
         $stmt->bindParam(':profile_image', $_POST['profile_image']);
         $stmt->execute();
         if ($stmt->rowCount() == 0){
             throw new Exception('No Student affected.');
-        } else if($_POST['Name'] == "" || $_POST['phone'] == "" || $_POST['email'] == ""){
+        } else if($_POST['name'] == "" || $_POST['phone'] == "" || $_POST['role'] == "" || $_POST['email'] == "" || $_POST['password'] == ""){
             throw new Exception('Please Fill Out All Fields with a *');
         } else{
         return "Successfully Updated the students info";
@@ -86,7 +88,7 @@ class Administrators_Model extends Model{
         if ($stmt->rowCount() == 0){
             throw new Exception('Error, Admin not Deleted.');
         } else{
-        return "Admin: ".$_POST['Name'].' Deleted!';
+        return "Admin: ".$_POST['name'].' Deleted!';
         }
       } catch (Exception $ex) {
         return $ex->getMessage();
@@ -105,9 +107,9 @@ class Administrators_Model extends Model{
     $data = $this->result;
     $table= "<ul class='adminList'>";
     foreach ($data as $key => $value) {
-        $table .="<li class='adminListItem>";
+        $table .="<li class='adminListItem'>";
         $table .= "<div class='listItemWrapper'>";
-        $table .= "<a href='../Get/$value[ID]' target='_self'>";
+        $table .= "<a href='http://127.0.0.1/theschool/administrators/Get/$value[ID]' target='_self'>";
         $table .= "<div>$value[ID]</div>";
         $table .= "<div>$value[name]</div>";
         $table .= "<div>$value[role]</div>";
