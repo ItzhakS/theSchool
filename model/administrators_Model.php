@@ -10,7 +10,7 @@ class Administrators_Model extends Model{
     try {
         $sql = "SELECT * FROM `theschool`.`administrators` WHERE ID = :adminID;";
         $stmt = $this->db->prepare($sql);
-        if($adminID >= 0){
+        if($adminID > 0){
             $stmt->bindParam(':adminID', $adminID);
         } else {
             $stmt->bindParam(':adminID', $_POST['ID']);
@@ -29,27 +29,26 @@ class Administrators_Model extends Model{
 
   public function Insert(){
     try {
-        $sql = "INSERT INTO `theschool`.`students`(`ID`,`Name`,`phone`, `email`, `profile_image`) VALUES(:ID,:Name,:phone, :email, :profile_image);";
-        if($_POST['ID'] == "" || $_POST['Name'] == "" || $_POST['phone'] == "" || $_POST['email'] == ""){
+        $sql = "INSERT INTO `theschool`.`administrators`(`name`,`phone`, `role`, `email`, `password`, `profile_image`) VALUES(:name,:phone,:role,:email, :password, :profile_image);";
+        if($_POST['name'] == "" || $_POST['phone'] == "" || $_POST['role'] == "" || $_POST['email'] == "" || $_POST['password'] == ""){
             throw new Exception('Please Fill Out All Fields with a *');
-        } else if($_POST['ID'] == "0" ){
-            throw new Exception('ID Cannot be zero');
-        } else if(preg_match('~[0-9]+~', $_POST['Name'])){
-            throw new Exception('Do not add numbers to Students name.');
+        } else if(preg_match('~[0-9]+~', $_POST['name'])){
+            throw new Exception('Do not add numbers to Admins name.');
         }else{
         
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':ID', $_POST['ID']);
-        $stmt->bindParam(':Name', $_POST['Name']);
+        $stmt->bindParam(':name', $_POST['name']);
         $stmt->bindParam(':phone', $_POST['phone']);
+        $stmt->bindParam(':role', $_POST['role']);
         $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':password', $_POST['password']);
         $stmt->bindParam(':profile_image', $_POST['profile_image']);
         $stmt->execute();
         }
         if($stmt->rowCount() == 0){
-            throw new Exception('Student ID already exists, please change the ID.');
+            throw new Exception('Admin not saved.');
         } else{
-        return 'Successfully inserted new student. Good Job. Go take a break.';
+        return 'Successfully inserted new Admin member. Good Job. Go take a break.';
         }
     } catch (Exception $ex) {
         return $ex->getMessage();
@@ -58,7 +57,7 @@ class Administrators_Model extends Model{
 
   public function Update(){
     try {
-        $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email,`profile_image` = :profile_image WHERE `ID` = :ID;";
+        $sql = "UPDATE `theschool`.`administrators` SET `name` = :name,`phone` = :phone, `role` = :role, `email` = :email, `password` = :password, `profile_image` = :profile_image WHERE `ID` = :ID;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':ID', $_POST['ID']);
         $stmt->bindParam(':Name', $_POST['Name']);
@@ -80,14 +79,14 @@ class Administrators_Model extends Model{
 
   public function Delete(){
     try {
-        $sql = "DELETE FROM `theschool`.`students` WHERE ID = :ID;";
+        $sql = "DELETE FROM `theschool`.`administrators` WHERE ID = :ID;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':ID', $_POST['ID']);
         $stmt->execute();
         if ($stmt->rowCount() == 0){
-            throw new Exception('No Student found.');
+            throw new Exception('Error, Admin not Deleted.');
         } else{
-        return "Student: ".$_POST['Name'].' Deleted!';
+        return "Admin: ".$_POST['Name'].' Deleted!';
         }
       } catch (Exception $ex) {
         return $ex->getMessage();
@@ -108,7 +107,7 @@ class Administrators_Model extends Model{
     foreach ($data as $key => $value) {
         $table .="<li class='adminListItem>";
         $table .= "<div class='listItemWrapper'>";
-        $table .= "<a href='Get/$value[ID]' target='_self'>";
+        $table .= "<a href='../Get/$value[ID]' target='_self'>";
         $table .= "<div>$value[ID]</div>";
         $table .= "<div>$value[name]</div>";
         $table .= "<div>$value[role]</div>";

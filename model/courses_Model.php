@@ -104,21 +104,21 @@ Class Courses_Model extends Model {
 
   public function ToHTML(){
     $data = $this->result;
-    $table= "<ul class='courseList'>";
+    $list= "<ul class='courseList'>";
     foreach ($data as $key => $value) {
-        $table .="<li class='courseListItem>";
-        $table .= "<div class='listItemWrapper'>";
-        $table .= "<a href='../Courses/Get/$value[ID]' target='_self'>";
-        $table .= "<div>$value[ID]</div>";
-        $table .= "<div>$value[name]</div>";
-        $table .="<div>$value[description]</div>";
-        $table .="<div>$value[image]</div>";
-        $table .= "</a>";
-        $table .= "</div>";
-        $table .= "</li>";
+        $list .="<li class='courseListItem>";
+        $list .= "<div class='listItemWrapper'>";
+        $list .= "<a href='../Courses/Get/$value[ID]' target='_self'>";
+        $list .= "<div>$value[ID]</div>";
+        $list .= "<div>$value[name]</div>";
+        $list .="<div>$value[description]</div>";
+        $list .="<div>$value[image]</div>";
+        $list .= "</a>";
+        $list .= "</div>";
+        $list .= "</li>";
     }
-    $table .= "</ul>";
-    return $table;
+    $list .= "</ul>";
+    return $list;
   }
 
 }

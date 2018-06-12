@@ -13,18 +13,33 @@ header.banner-wrapper{
     width: 100%;
     height: 50px;
     text-align: center;
-    background-color: #66ffcc;
+    background-color: #df7905;
 }
 div.banner{
     width: 100%;
     height: 100%;
-    margin: 0 10px 0 10px;
-    border: solid 1px #006666;
-    background-color: #66ffcc;
-    border-radius: 20px;
+    margin: 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    -webkit-box-shadow: 0px 4px 11px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 11px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 11px 3px rgba(0,0,0,0.75);
+
 }
-div.banner h1{
-    margin-top: 5px;
+.schoolLogo{
+    height: 50px;
+    width: 70px;
+    display: flex;
+    background-image: url(../schoolLogo.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-color: #df7905;
+}
+.schoolLink{
+    height: 50px;
+    width: 70px;
+    display: flex;
 }
 .mainContent{
     display: grid;

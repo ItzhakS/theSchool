@@ -43,9 +43,10 @@ class Students extends Controller {
     }
     
     public function GetAll(){
-        $this->_view->rightContent = '';
-        $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
-        $this->_view->render('students/leftContainer','students/rightContainer');
+        return $this->_model->GetAll()->ToHTML();
+        // $this->_view->rightContent = '';
+        // $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
+        // $this->_view->render('students/leftContainer','students/rightContainer');
     }
     
     
