@@ -64,7 +64,7 @@ div.banner{
 }
 .mainContent{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 40% 60%;
 }
 
 .leftContainer-wrapper{
@@ -78,6 +78,28 @@ div.banner{
 .leftContainer{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 19px;
+}
+
+.coursesWrapper, .studentsWrapper{
+    width:230px;
+}
+
+.coursesHeader, .studentsHeader{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    box-shadow:inset 0 -1px 10px 0 rgba(0,0,0,0.75);
+}
+
+.addCourse, .addStudent{
+    margin-top: 20px;
+    height: 23px;
+}
+
+.add{
+    text-decoration: none;
+    color: #000;
 }
 
 .rightContainer-wrapper{
@@ -99,6 +121,6 @@ li a{
     text-decoration: none;
 }
 
-.listitemwrapper:hover{
+.listItemWrapper:hover{
     background-color: rgb(209, 209, 209);
 }

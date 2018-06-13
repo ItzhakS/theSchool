@@ -8,7 +8,8 @@ class TheSchool extends Controller {
         
     }
     public function index(){
-        $this->_view->render("leftSchoolContainer", "rightStudentContainer");
+        $this->_view->rightInfo = "This is the Important Info";
+        $this->_view->render("leftSchoolContainer", "rightInfoContainer");
     }
     
 
