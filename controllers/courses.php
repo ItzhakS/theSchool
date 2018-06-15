@@ -14,7 +14,10 @@ class Courses extends Controller{
 
   public function Get($courseID){
     $result = $this->_model->Get($courseID);
-    $this->_view->rightContent = $result;
+    $this->_view->ID = $result['ID'];
+    $this->_view->name = $result['name'];
+    $this->_view->description = $result['description'];
+    $this->_view->profile_image = $result['profile_image'] || "Nothing";
     $this->_view->render("leftSchoolContainer", "courses/rightCourseInfo");
   }
 
@@ -22,7 +25,7 @@ class Courses extends Controller{
     $result = $this->_model->Get($courseID);
     $this->_view->ID = $result['ID'];
     $this->_view->name = $result['name'];
-    $this->_view->phone = $result['description'];
+    $this->_view->description = $result['description'];
     $this->_view->profile_image = $result['profile_image'];
     $this->_view->render("leftSchoolContainer", "courses/rightCourseContainer");
   }

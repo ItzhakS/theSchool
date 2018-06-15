@@ -9,9 +9,12 @@ class View {
         $this->role = '';
         $this->phone = '';
         $this->email = '';
+        $this->description = '';
         $this->password = '';
         $this->profile_image = '';
         $this->rightContent = '';
+        $this->courseInfo = '';
+        $this->studentInfo = '';
     }
     
     public function render($name1, $name2) {

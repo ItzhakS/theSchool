@@ -103,7 +103,7 @@ Class Courses_Model extends Model {
     foreach ($data as $key => $value) {
         $list .="<li class='courseListItem'>";
         $list .="<div class='listItemWrapper'>";
-        $list .="<a href='../Courses/Get/$value[ID]' target='_self'>";
+        $list .="<a href='http://127.0.0.1/theschool/Courses/Get/$value[ID]' target='_self'>";
         $list .="<div>$value[ID]</div>";
         $list .="<div>$value[name]</div>";
         $list .="<div>$value[description]</div>";
