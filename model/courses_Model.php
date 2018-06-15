@@ -29,27 +29,24 @@ Class Courses_Model extends Model {
 
   public function Insert(){
     try {
-        $sql = "INSERT INTO `theschool`.`students`(`ID`,`Name`,`phone`, `email`, `profile_image`) VALUES(:ID,:Name,:phone, :email, :profile_image);";
-        if($_POST['ID'] == "" || $_POST['Name'] == "" || $_POST['phone'] == "" || $_POST['email'] == ""){
+        $sql = "INSERT INTO `theschool`.`courses`(`name`,`description`, `profile_image`) VALUES(:name, :description, :profile_image);";
+        if($_POST['name'] == "" || $_POST['description'] == ""){
             throw new Exception('Please Fill Out All Fields with a *');
-        } else if($_POST['ID'] == "0" ){
-            throw new Exception('ID Cannot be zero');
-        } else if(preg_match('~[0-9]+~', $_POST['Name'])){
-            throw new Exception('Do not add numbers to Students name.');
+        // } else if(preg_match('~[0-9]+~', $_POST['Name'])){
+        //     throw new Exception('Do not add numbers to Students name.');
         }else{
         
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':ID', $_POST['ID']);
-        $stmt->bindParam(':Name', $_POST['Name']);
-        $stmt->bindParam(':phone', $_POST['phone']);
-        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':name', $_POST['name']);
+        $stmt->bindParam(':description', $_POST['description']);
         $stmt->bindParam(':profile_image', $_POST['profile_image']);
         $stmt->execute();
         }
         if($stmt->rowCount() == 0){
-            throw new Exception('Student ID already exists, please change the ID.');
+            throw new Exception('The Course was not added. Too Bad');
         } else{
-        return 'Successfully inserted new student. Good Job. Go take a break.';
+        return 'Successfully added ne Course. Good Job. Go take a break.';
         }
     } catch (Exception $ex) {
         return $ex->getMessage();
@@ -58,20 +55,18 @@ Class Courses_Model extends Model {
 
   public function Update(){
     try {
-        $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email,`profile_image` = :profile_image WHERE `ID` = :ID;";
+        $sql = "UPDATE `theschool`.`courses` SET `name` = :name,`description` = :description,`profile_image` = :profile_image WHERE `ID` = :ID;";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':ID', $_POST['ID']);
-        $stmt->bindParam(':Name', $_POST['Name']);
-        $stmt->bindParam(':phone', $_POST['phone']);
-        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':name', $_POST['name']);
+        $stmt->bindParam(':description', $_POST['description']);
         $stmt->bindParam(':profile_image', $_POST['profile_image']);
         $stmt->execute();
-        if ($stmt->rowCount() == 0){
-            throw new Exception('No Student affected.');
-        } else if($_POST['Name'] == "" || $_POST['phone'] == "" || $_POST['email'] == ""){
+        if ($_POST['name'] == "" || $_POST['description'] == ""){
             throw new Exception('Please Fill Out All Fields with a *');
+        } else if($stmt->rowCount() == 0){
+            throw new Exception('Update Unsuccessful.');
         } else{
-        return "Successfully Updated the students info";
+        return "Successfully Updated the Course info";
         }
       } catch (Exception $ex) {
         return $ex->getMessage();
@@ -85,9 +80,9 @@ Class Courses_Model extends Model {
         $stmt->bindParam(':ID', $_POST['ID']);
         $stmt->execute();
         if ($stmt->rowCount() == 0){
-            throw new Exception('No Student found.');
+            throw new Exception('Not Deleted. You can\'t catch me');
         } else{
-        return "Student: ".$_POST['Name'].' Deleted!';
+        return "Course: ".$_POST['name'].' Deleted! HAHAHA!';
         }
       } catch (Exception $ex) {
         return $ex->getMessage();

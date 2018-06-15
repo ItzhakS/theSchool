@@ -14,8 +14,18 @@ class Students extends Controller {
     }
     
     public function Get($studentID){
+        $this->_view->studentInfo = $this->_model->Get($studentID);
+        $this->_view->render("leftSchoolContainer", "rightStudentInfo");
+    }
+
+    public function EditStudent($studentID){
         $result = $this->_model->Get($studentID);
-        $this->_view->render("leftContainer", "rightContainer");
+        $this->_view->ID = $result['ID'];
+        $this->_view->Name = $result['Name'];
+        $this->_view->phone = $result['phone'];
+        $this->_view->email = $result['email'];
+        $this->_view->profile_image = $result['profile_image'];
+        $this->_view->render("leftSchoolContainer", "rightStudentcontainer");
     }
 
     private function Insert(){

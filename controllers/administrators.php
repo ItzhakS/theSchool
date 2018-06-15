@@ -28,6 +28,17 @@ class Administrators extends Controller{
     // $this->_view->render('administrators/leftContainer','administrators/rightContainer');
 }
 
+  public function EditStudent($studentID){
+    $result = $this->_model->Get($studentID);
+    $this->_view->ID = $result['ID'];
+    $this->_view->Name = $result['Name'];
+    $this->_view->phone = $result['phone'];
+    $this->_view->email = $result['email'];
+    $this->_view->profile_image = $result['profile_image'];
+    $this->_view->render("leftSchoolContainer", "rightStudentcontainer");
+  }
+
+
   private function Insert(){
     $this->_model->Insert();
     $this->_view->leftContent = $this->GetAll();
@@ -45,15 +56,7 @@ class Administrators extends Controller{
   }
 
   public function GetAll(){
-    // $this->_view->ID = '';
-    // $this->_view->name = '';
-    // $this->_view->role = '';
-    // $this->_view->phone = '';
-    // $this->_view->email = '';
-    // $this->_view->password = '';
-    // $this->_view->profile_image = '';
-    // $this->_view->rightContent = '';
     $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
     $this->_view->render('administrators/leftContainer','administrators/rightContainer');
-}
+  }
 }

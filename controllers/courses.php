@@ -15,21 +15,33 @@ class Courses extends Controller{
   public function Get($courseID){
     $result = $this->_model->Get($courseID);
     $this->_view->rightContent = $result;
-    $this->_view->render("leftContainer", "rightContainer");
+    $this->_view->render("leftSchoolContainer", "courses/rightCourseInfo");
   }
 
+  public function EditCourse($courseID){
+    $result = $this->_model->Get($courseID);
+    $this->_view->ID = $result['ID'];
+    $this->_view->name = $result['name'];
+    $this->_view->phone = $result['description'];
+    $this->_view->profile_image = $result['profile_image'];
+    $this->_view->render("leftSchoolContainer", "courses/rightCourseContainer");
+  }
+
+
   private function Insert(){
-    $this->_view->content = $this->_model->Insert();
-    $this->_view->render('Employees/index');
-}
-private function Update(){
-    $this->_view->content = $this->_model->Update();
-    $this->_view->render('Employees/index');
-}
-private function Delete(){
-    $this->_view->content = $this->_model->Delete();
-    $this->_view->render('Employees/index');
-}
+    $this->_view->rightInfo= $this->_model->Insert();
+    $this->_view->render("leftSchoolContainer", "rightInfoContainer");
+  }
+
+  private function Update(){
+      $this->_view->rightInfo= $this->_model->Update();
+      $this->_view->render("leftSchoolContainer", "rightInfoContainer");
+  }
+
+  private function Delete(){
+      $this->_view->rightInfo= $this->_model->Delete();
+      $this->_view->render("leftSchoolContainer", "rightInfoContainer");
+  }
 
   public function GetAll(){
     return $this->_model->GetAll()->ToHTML();
