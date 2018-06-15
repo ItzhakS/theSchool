@@ -29,17 +29,14 @@ class Students_Model extends Model {
     
     public function Insert(){
         try {
-            $sql = "INSERT INTO `theschool`.`students`(`ID`,`Name`,`phone`, `email`, `profile_image`) VALUES(:ID,:Name,:phone, :email, :profile_image);";
-            if($_POST['ID'] == "" || $_POST['Name'] == "" || $_POST['phone'] == "" || $_POST['email'] == ""){
+            $sql = "INSERT INTO `theschool`.`students`(`Name`,`phone`, `email`, `profile_image`) VALUES(:Name,:phone, :email, :profile_image);";
+            if($_POST['Name'] == "" || $_POST['phone'] == "" || $_POST['email'] == ""){
                 throw new Exception('Please Fill Out All Fields with a *');
-            } else if($_POST['ID'] == "0" ){
-                throw new Exception('ID Cannot be zero');
             } else if(preg_match('~[0-9]+~', $_POST['Name'])){
                  throw new Exception('Do not add numbers to Students name.');
             }else{
             
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':ID', $_POST['ID']);
             $stmt->bindParam(':Name', $_POST['Name']);
             $stmt->bindParam(':phone', $_POST['phone']);
             $stmt->bindParam(':email', $_POST['email']);
@@ -47,7 +44,7 @@ class Students_Model extends Model {
             $stmt->execute();
             }
             if($stmt->rowCount() == 0){
-                throw new Exception('Student ID already exists, please change the ID.');
+                throw new Exception('Error: Student was not added. Try Again. Don\'t give up!');
             } else{
             return 'Successfully inserted new student. Good Job. Go take a break.';
             }

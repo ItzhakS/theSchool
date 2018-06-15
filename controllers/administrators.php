@@ -29,7 +29,7 @@ class Administrators extends Controller{
 }
 
   private function Insert(){
-    $this->_view->rightContent = $this->_model->Insert();
+    $this->_model->Insert();
     $this->_view->leftContent = $this->GetAll();
     $this->_view->render('administrators/leftContainer','administrators/rightContainer');
   }
