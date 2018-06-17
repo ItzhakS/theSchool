@@ -13,12 +13,12 @@ class TheSchool extends Controller {
     }
 
     public function insertCourse(){
-        $this->_view->render("leftSchoolContainer", "rightCourseContainer");
+        $this->_view->render("leftSchoolContainer", "courses/rightCourseContainer");
 
     }
 
     public function insertStudent(){
-        $this->_view->render("leftSchoolContainer", "rightStudentContainer");
+        $this->_view->render("leftSchoolContainer", "students/rightStudentContainer");
 
     }
     

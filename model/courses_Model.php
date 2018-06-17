@@ -29,24 +29,22 @@ Class Courses_Model extends Model {
 
   public function Insert(){
     try {
-        $sql = "INSERT INTO `theschool`.`courses`(`name`,`description`, `profile_image`) VALUES(:name, :description, :profile_image);";
+        $sql = "INSERT INTO `theschool`.`courses`(`name`,`description`, `profile_image`) VALUES (:name, :description, :profile_image);";
         if($_POST['name'] == "" || $_POST['description'] == ""){
             throw new Exception('Please Fill Out All Fields with a *');
         // } else if(preg_match('~[0-9]+~', $_POST['Name'])){
         //     throw new Exception('Do not add numbers to Students name.');
         }else{
-        
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':ID', $_POST['ID']);
-        $stmt->bindParam(':name', $_POST['name']);
-        $stmt->bindParam(':description', $_POST['description']);
-        $stmt->bindParam(':profile_image', $_POST['profile_image']);
-        $stmt->execute();
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':name', $_POST['name']);
+            $stmt->bindParam(':description', $_POST['description']);
+            $stmt->bindParam(':profile_image', $_POST['profile_image']);
+            $stmt->execute();
         }
         if($stmt->rowCount() == 0){
             throw new Exception('The Course was not added. Too Bad');
         } else{
-        return 'Successfully added ne Course. Good Job. Go take a break.';
+            return 'Successfully added new Course. Good Job. Go take a break.';
         }
     } catch (Exception $ex) {
         return $ex->getMessage();

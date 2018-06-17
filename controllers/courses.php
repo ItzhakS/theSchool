@@ -8,8 +8,8 @@ class Courses extends Controller{
   }
 
   public function index(){
-    
-
+    $Action = $_POST['ACTION'];
+    $this->{$Action}();
 }
 
   public function Get($courseID){
@@ -32,7 +32,7 @@ class Courses extends Controller{
 
 
   private function Insert(){
-    $this->_view->rightInfo= $this->_model->Insert();
+    $this->_view->rightInfo = $this->_model->Insert();
     $this->_view->render("leftSchoolContainer", "rightInfoContainer");
   }
 
