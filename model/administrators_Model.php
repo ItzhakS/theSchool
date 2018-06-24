@@ -124,6 +124,19 @@ class Administrators_Model extends Model{
     return $table;
   }
 
+  public function adminCount(){
+    // try {
+        $sql = "SELECT COUNT(ID) FROM `theschool`.`administrators`;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->result;
+    // }
+    // catch(){
+
+    // }
+  }
+
 
 }
 

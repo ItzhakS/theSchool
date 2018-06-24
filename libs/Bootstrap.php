@@ -47,7 +47,7 @@ class Bootstrap {
     }
 
     private function _execute() {
-        if ($this->_p1 > 0 && method_exists($this->_controllerObj, $this->_action)) {
+        if ($this->_p1 && method_exists($this->_controllerObj, $this->_action)) {
             // $this->_controllerObj->a = $this->_p1;
             $this->_controllerObj->{$this->_action}($this->_p1);
             return;

@@ -7,7 +7,7 @@
             <label>Phone Number: <input name="phone" type="number" value="<?php echo $this->phone; ?>">*</label>
             <label>Email: <input name="email" type="email" value="<?php echo $this->email; ?>">*</label>
             <label>Password: <input name="password" type="text" value="<?php echo $this->password; ?>">*</label>
-            <label>Profile Image: <input name="profile_image" type="file" value="<?php echo $this->profile_image; ?>"></label>
+            <label>Profile Image: <input name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" accept=".jpg, .jpeg, .png"></label>
             <br>
             <input type="submit" name="ACTION" value="Insert">
             <input type="submit" name="ACTION" value="Update">

@@ -7,11 +7,13 @@ class Administrators extends Controller{
     parent::loadModel(__CLASS__);
   }
 
-  public function index(){
-    $Action = $_POST['ACTION'];
-    // $Action = str_replace(' ', '', $Action);
-    $this->{$Action}();
-
+  public function index($info = false){
+    if($info){
+      $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
+    } else {
+      $Action = $_POST['ACTION'];
+      $this->{$Action}();
+    }
   }
 
   public function Get($adminID = null){
@@ -22,10 +24,10 @@ class Administrators extends Controller{
     $this->_view->phone = $result['phone'];
     $this->_view->email = $result['email'];
     $this->_view->password = $result['password'];
-    $this->_view->leftContent = $this->GetAll();    
+    // $this->_view->leftContent = $this->GetAll();    
     // $this->_view->profile_image = $result['profile-image'];
-    $this->_view->rightContent = '';
-    // $this->_view->render('administrators/leftContainer','administrators/rightContainer');
+    // $this->_view->rightContent = '';
+    $this->_view->render('administrators/leftContainer','administrators/rightEditContainer');
 }
 
   public function EditStudent($studentID){
@@ -42,21 +44,30 @@ class Administrators extends Controller{
   private function Insert(){
     $this->_model->Insert();
     $this->_view->leftContent = $this->GetAll();
+    $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
+  }
+
+  private function insertAdmin(){
     $this->_view->render('administrators/leftContainer','administrators/rightContainer');
   }
+
   private function Update(){
     $this->_view->rightContent = $this->_model->Update();;
     $this->_view->leftContent = $this->GetAll();
-    $this->_view->render('administrators/leftContainer','administrators/rightContainer');
+    $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
   }
   private function Delete(){
     $this->_view->rightContent = $this->_model->Delete();
     $this->_view->leftContent = $this->GetAll();
-    $this->_view->render('administrators/leftContainer','administrators/rightContainer');
+    $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
   }
 
   public function GetAll(){
-    $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
-    $this->_view->render('administrators/leftContainer','administrators/rightContainer');
+    return $this->_model->GetAll()->ToHTML();
+  }
+
+  public function displayInfo(){
+    $adminInfo = $this->_model->adminCount();
+    return $adminInfo[0]['COUNT(ID)'];
   }
 }
