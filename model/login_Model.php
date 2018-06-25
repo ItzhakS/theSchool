@@ -16,7 +16,7 @@ class Login_Model extends Model {
         $stmt->bindParam(":pswd", $password);
         $stmt->execute();
         $this->result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($stmt->rowCount() !== 0) {
+        if ($this->result) {
             Session::set('role', $this->result['role']);
             Session::set('loggedIn' , true);
             $retValue = true;

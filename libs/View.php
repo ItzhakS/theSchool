@@ -18,10 +18,16 @@ class View {
     }
     
     public function render($name1, $name2) {
-        require_once "views/header.php" ;
-        require_once "views/$name1.php" ;
-        require_once "views/$name2.php" ;
-        require_once "views/footer.php" ;
+        if ($name1 && $name2){
+            require_once "views/header.php" ;
+            require_once "views/$name1.php" ;
+            require_once "views/$name2.php" ;
+            require_once "views/footer.php" ;
+        } else if($name2 == ''){
+            require_once "views/header.php" ;
+            require_once "views/$name1.php" ;
+            require_once "views/footer.php" ;
+        }
     }
 
 }
