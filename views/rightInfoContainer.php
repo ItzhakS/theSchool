@@ -1,13 +1,5 @@
 <div class="infoContainer">
-    <?php
-    echo "$this->rightInfo";
-      function getInfo(){
-        if ($this->__CLASS__ == 'TheSchool'){
-
-        } else if($this->__CLASS__ == "Administrators"){
-
-        }
-      }
-    ?>
+  <h2>The School</h2>
+  <p>The School has <?php echo "$this->studentsAmount"?> students enrolled and <?php echo "$this->coursesAmount"?> courses offered.</p>
   </div>
 </div>

@@ -6,6 +6,10 @@ class Students_Model extends Model {
         parent::__construct();
     }
     
+    /*
+    * Add query for courses the student is in
+    * SELECT courses.`name` FROM COURSES where courses.`ID` in (select link_students_courses.`courseID` from link_students_courses where link_students_courses.`studentID` = 1 );
+    */
     public function Get($studentID){
         try {
             $sql = "SELECT * FROM `theschool`.`students` WHERE ID = :studentID;";
@@ -27,6 +31,10 @@ class Students_Model extends Model {
         }
     }
     
+    /*
+    * Add query for courses the student is in
+    * SELECT courses.`name` FROM COURSES where courses.`ID` in (select link_students_courses.`courseID` from link_students_courses where link_students_courses.`studentID` = 1 );
+    */
     public function Insert(){
         try {
             $sql = "INSERT INTO `theschool`.`students`(`Name`,`phone`, `email`, `profile_image`) VALUES(:Name,:phone, :email, :profile_image);";
@@ -53,6 +61,10 @@ class Students_Model extends Model {
         }   
     }
     
+    /*
+    * Add query for courses the student is in
+    * Update courses.`name` FROM COURSES where courses.`ID` in (select link_students_courses.`courseID` from link_students_courses where link_students_courses.`studentID` = 1 );
+    */
     public function Update(){
         try {
             $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email,`profile_image` = :profile_image WHERE `ID` = :ID;";

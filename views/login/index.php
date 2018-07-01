@@ -1,8 +1,6 @@
-<h1>Login</h1>
-<form action="<?php echo config::URL  ?>login/authenticate"  method="post"> 
-    <table>
-        <tr><td><label>Login</labal></td><td><input type="text" name="login"><br></td></tr>
-        <tr><td><label>Password</labal></td><td><input type="password" name="password"></td></tr>
-        <tr><td><input type="submit" value="Login"></td><td></td></tr>
-    </table>
+<h1 class="loginHeading">Login</h1>
+<form class="loginForm"action="<?php echo config::URL  ?>login/authenticate"  method="post"> 
+        <label>Login: </label><input type="text" name="login"><br>
+        <label>Password: </label><input type="password" name="password">
+        <input type="submit" value="Login">
 </form>

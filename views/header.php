@@ -14,7 +14,7 @@
                     <?php if (Session::get('loggedIn')): ?>
                         <div class="schoolLink"><a href='<?php echo Config::URL ?>theSchool/index' target='_self'>The School</a></div>
                     <?php endif;?>
-                    <?php if (Session::get('role') == 'Admin'):?>
+                    <?php if (Session::get('role') == 'Administrator' || Session::get('role') == 'Owner'):?>
                         <div class="adminLink"><a href='<?php echo Config::URL ?>administrators/index/infos' target='_self'>Administration</a></div>
                     <?php endif;?>
                 </div>
@@ -22,13 +22,17 @@
             <div class="bannerRight">
                 <div class="loggedIn">
                     <div class="currentUser">
-                        <div class="userName"></div>
-                        <a class="logout" href='<?php echo Config::URL ?>login/logout' target='_self'>Logout</a>
                         <div class="userImage"></div>
+                        <div class="userName">
+                            <?php echo Session::get('name');?>
+                        </div>
+                        <div class="userRole">
+                            <?php echo Session::get('role');?>
+                        </div>
+                        <a class="logout" href='<?php echo Config::URL ?>login/logout' target='_self'>Logout</a>
                     </div>
                 </div>
             </div>
                 <?php endif;?>
             </div>
         </header>
-        <div class="mainContent">

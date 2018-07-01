@@ -8,7 +8,10 @@ class TheSchool extends Controller {
         
     }
     public function index(){
-        $this->_view->rightInfo = "This is the Important Info";
+        $studentsAmount = $this->_model->studentsCount();
+        $coursesAmount =  $this->_model->coursesCount();
+        $this->_view->studentsAmount = $studentsAmount[0]['COUNT(ID)'];
+        $this->_view->coursesAmount = $coursesAmount[0]['COUNT(ID)'];
         $this->_view->render("leftSchoolContainer", "rightInfoContainer");
     }
 
