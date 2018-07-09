@@ -82,12 +82,12 @@ form.loginForm input:last-child:active{
 }
 .mainContent{
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .leftContainer-wrapper{
     height: 90vh;
-    width: auto;
+    padding: 15px;
     border-right: 1px solid black;
     /*grid-column: ;*/
 }
@@ -104,6 +104,10 @@ form.loginForm input:last-child:active{
     height: inherit;
 }
 
+.coursesWrapper{
+    border-right: #000 solid 1px;
+}
+
 .coursesHeader, .studentsHeader{
     display: flex;
     flex-flow: row;
@@ -118,8 +122,10 @@ form.loginForm input:last-child:active{
 
 .infoContainer{
     display: flex;
+    grid-column: 2/ span 2;
     flex-direction: column;
     justify-content: center;
+    padding: 20px;
 }
 
 .infoContainer h2{
@@ -131,7 +137,7 @@ form.loginForm input:last-child:active{
 .infoContainer p {
     margin: 0 auto;
 }
-.addCourse, .addStudent{
+.addCourse, .addStudent, .addAdmin{
     margin-top: 20px;
     height: 23px;
     background-color: #f7b11b;
@@ -142,22 +148,32 @@ form.loginForm input:last-child:active{
     color: #000;
 }
 
+.studentInfo{
+    grid-column: 2/ span 2;
+}
 .rightContainer-wrapper{
+    display: flex;
+    justify-content: center;
     height: 90vh;
-    width: auto;
-    /*grid-column: ;*/
+    grid-column: 2/ span 2;
 }
 
 .rightContainer{
     margin-left: 10px;
 }
 
-form.editForm{
+form.editForm, form.editAdminForm{
     display: grid;
 }
 
-form.editForm input[type="submit" i]{
-    width: 50px;
+form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i], {
+    width: 60px;
+}
+
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+
 }
 
 li{

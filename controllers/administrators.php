@@ -27,17 +27,18 @@ class Administrators extends Controller{
     // $this->_view->leftContent = $this->GetAll();    
     // $this->_view->profile_image = $result['profile-image'];
     // $this->_view->rightContent = '';
-    $this->_view->render('administrators/leftContainer','administrators/rightEditContainer');
+    $this->_view->render('administrators/leftContainer','administrators/rightAdminInfo');
 }
 
-  public function EditStudent($studentID){
-    $result = $this->_model->Get($studentID);
+  public function EditAdmin($adminID){
+    $result = $this->_model->Get($adminID);
     $this->_view->ID = $result['ID'];
-    $this->_view->Name = $result['Name'];
+    $this->_view->name = $result['name'];
+    $this->_view->role = $result['role'];
     $this->_view->phone = $result['phone'];
     $this->_view->email = $result['email'];
     $this->_view->profile_image = $result['profile_image'];
-    $this->_view->render("leftSchoolContainer", "rightStudentcontainer");
+    $this->_view->render("administrators/leftContainer','administrators/rightEditContainer");
   }
 
 

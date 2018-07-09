@@ -109,7 +109,7 @@ class Administrators_Model extends Model{
     foreach ($data as $key => $value) {
         $table .="<li class='adminListItem'>";
         $table .= "<div class='listItemWrapper'>";
-        $table .= "<a href='http://127.0.0.1/theschool/administrators/Get/$value[ID]' target='_self'>";
+        $table .= "<a href='../TheSchool/Administrators/Get/$value[ID]' target='_self'>";
         $table .= "<div>$value[ID]</div>";
         $table .= "<div>$value[name]</div>";
         $table .= "<div>$value[role]</div>";

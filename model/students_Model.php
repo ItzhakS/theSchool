@@ -116,7 +116,7 @@ class Students_Model extends Model {
          $table= "<ul class='studentsList'>";
          foreach ($data as $key => $value) {
             $table .="<li class='studentListItem'>";
-            $table .= "<div><a href='http://127.0.0.1/theschool/students/get/$value[ID]' target='_self'>";
+            $table .= "<div><a href='../Students/Get/$value[ID]' target='_self'>";
             $table .= "<div>$value[ID]</div>";
             $table .= "<div>$value[Name]</div>";
             $table .="<div>$value[phone]</div>";
@@ -126,6 +126,15 @@ class Students_Model extends Model {
          }
          $table .= "</ul>";
          return $table;
+     }
+
+     public function GetStudentsCourses(){
+        $sql = "SELECT courses.`name` FROM COURSES where courses.`ID` in (select link_students_courses.`courseID` from link_students_courses where link_students_courses.`studentID` = :studentID )";
+        $stmt->bindParam(':studentID', $_POST['ID']);
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->result;
      }
 
 }
