@@ -1,6 +1,6 @@
     <div class="rightContainer-wrapper">
         <div class="rightContainer">
-            <form class="editAdminForm"action="<?php echo Config::URL ?>administrators/" method="POST" >
+            <form class="editAdminForm"action="<?php echo Config::URL ?>administrators/" method="POST" enctype="multipart/form-data">
                 <label style="visibility: hidden;">ID: <input name="ID" type="number" value="<?php echo $this->ID; ?>" style="visibility: hidden;"></label>
                 <label>Name: <input name="name" type="text" value="<?php echo $this->name; ?>">*</label>
                 <label>Role: <input name="role" type="text" value="<?php echo $this->role; ?>">*</label>

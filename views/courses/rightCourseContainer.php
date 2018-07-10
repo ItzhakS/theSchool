@@ -1,6 +1,6 @@
     <div class="rightContainer-wrapper">
         <div class="rightContainer">
-            <form action="<?php echo Config::URL ?>Courses/" method="POST" id="courseForm" >
+            <form action="<?php echo Config::URL ?>Courses/" method="POST" id="courseForm" enctype="multipart/form-data">
                 <label style="visibility: hidden;">ID: <input name="ID" type="number" value="<?php echo $this->ID; ?>" style="visibility: hidden;"></label>
                 <label>Name: <input name="name" type="text" value="<?php echo $this->name; ?>">*</label>
                 <label>Description: <textarea rows="3" name="description" type="text" form="courseForm"><?php echo $this->description; ?></textarea>*</label>

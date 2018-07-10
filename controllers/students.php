@@ -23,6 +23,10 @@ class Students extends Controller {
         $this->_view->render("leftSchoolContainer", "students/rightStudentInfo");
     }
 
+    public function GetStudentsCourses($id){
+        return $this->_model->GetStudentsCourses($id);
+    }
+
     public function EditStudent($studentID){
         $result = $this->_model->Get($studentID);
         $this->_view->ID = $result['ID'];
@@ -38,7 +42,7 @@ class Students extends Controller {
         $this->_view->render("leftSchoolContainer", "rightInfoContainer");
     }
     private function Update(){
-        $this->_view->rightInfo = $this->_model->Update();
+        $this->_view->message = $this->_model->Update();
         $this->_view->render("leftSchoolContainer", "rightInfoContainer");
     }
     private function Delete(){

@@ -6,6 +6,10 @@
     <div class="studentEmail"><?php echo $this->email;?></div>
     <div class="editBtn"><a href="<?php echo Config::URL ?>Students/EditStudent/<?php echo $this->ID?>">Edit</a></div>
     <?php $studentController = new Students;
-    print_r($studentController->GetStudentsCourses())?>
+          $courses = $studentController->GetStudentsCourses($this->ID);
+          // print_r($courses);
+          foreach ($courses as $key => $course) {
+            echo "<h4>$course[name]</h4>";
+          }?>
   </div>
 </div>

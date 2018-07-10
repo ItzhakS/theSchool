@@ -15,6 +15,7 @@ class View {
         $this->rightContent = '';
         $this->courseInfo = '';
         $this->studentInfo = '';
+        $this->message = '';
     }
     
     public function render($name1, $name2) {

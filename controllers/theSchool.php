@@ -8,11 +8,19 @@ class TheSchool extends Controller {
         
     }
     public function index(){
-        $studentsAmount = $this->_model->studentsCount();
-        $coursesAmount =  $this->_model->coursesCount();
-        $this->_view->studentsAmount = $studentsAmount[0]['COUNT(ID)'];
-        $this->_view->coursesAmount = $coursesAmount[0]['COUNT(ID)'];
+        $this->_view->messsage = "";
         $this->_view->render("leftSchoolContainer", "rightInfoContainer");
+    }
+
+    public function studentCount(){
+        $studentsAmount = $this->_model->studentsCount();
+        return $studentsAmount[0]['COUNT(ID)'];
+        
+    }
+    public function courseCount(){
+        $coursesAmount =  $this->_model->coursesCount();
+        return $coursesAmount[0]['COUNT(ID)'];
+        
     }
 
     public function insertCourse(){

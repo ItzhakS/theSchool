@@ -52,4 +52,7 @@ class Courses extends Controller{
     // $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
     // $this->_view->render('students/leftContainer','students/rightContainer');
   }
+  public function GetAllCourses(){
+    return $this->_model->GetAll(true);
+  }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class theSchool_model extends Model{
+class TheSchool_Model extends Model{
   
   function __construct() {
     parent::__construct();

@@ -87,11 +87,14 @@ Class Courses_Model extends Model {
     }
   }
 
-  public function GetAll(){
+  public function GetAll($forCheckboxes = false){
     $sql = "SELECT * FROM `theschool`.`courses`;";
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if($forCheckboxes){
+        return $this->result;
+    }
     return $this;
   }
 
