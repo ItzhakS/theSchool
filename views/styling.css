@@ -86,7 +86,7 @@ form.loginForm input:last-child:active{
 }
 
 .leftContainer-wrapper{
-    height: 90vh;
+    height: 85vh;
     padding: 15px;
     border-right: 1px solid black;
     /*grid-column: ;*/
@@ -151,6 +151,54 @@ form.loginForm input:last-child:active{
 .studentInfo{
     grid-column: 2/ span 2;
 }
+
+.studentInfoContainer{
+    margin: 0 auto;
+    font-size: 2em;
+    text-align: center;
+}
+
+.studentInfoContainer img{
+    height: 140px;
+}
+
+.studentInfoContainer div a{
+    text-decoration: none;
+    color: #f7b11b;
+}
+
+.studentInfoContainer div a:hover{
+    opacity: 0.5;
+}
+
+.adminsInfoWrapper{
+    display: flex;
+    grid-column: 2/ span 2;
+    justify-content: center;
+    padding: 20px;
+}
+
+.infoContent{
+    
+}
+
+.adminInfo{
+    grid-column: 2/ span 2;
+    text-align: center;
+    font-size: 2em;
+    padding-top: 30px;
+
+}
+
+.adminInfo img{
+    height: 140px;
+}
+
+.adminInfo div a{
+    text-decoration: none;
+    color: #f7b11b;
+}
+
 .rightContainer-wrapper{
     display: flex;
     justify-content: center;
@@ -177,6 +225,7 @@ form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i],
 }
 
 li{
+    margin-top: 10px;
     list-style: none; 
 }
 
@@ -187,6 +236,10 @@ li a{
 
 .listItemWrapper:hover{
     background-color: rgb(209, 209, 209);
+}
+
+img{
+    height: 50px;
 }
 
 .footerWrapper{

@@ -38,7 +38,7 @@ class Administrators extends Controller{
     $this->_view->phone = $result['phone'];
     $this->_view->email = $result['email'];
     $this->_view->profile_image = $result['profile_image'];
-    $this->_view->render("administrators/leftContainer','administrators/rightEditContainer");
+    $this->_view->render("administrators/leftContainer","administrators/rightEditContainer");
   }
 
 

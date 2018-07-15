@@ -42,7 +42,15 @@ class Administrators_Model extends Model{
         $stmt->bindParam(':role', $_POST['role']);
         $stmt->bindParam(':email', $_POST['email']);
         $stmt->bindParam(':password', $_POST['password']);
-        $stmt->bindParam(':profile_image', $_POST['profile_image']);
+        $filePath = "http://localhost/theschool/uploads/";
+        if ( $_FILES['profile_image']['name'] == ''){
+            $filePath .= 'default-user.png';
+            $stmt->bindParam(':profile_image', $filePath);
+        } else{
+            $fileName = $_FILES["profile_image"]["name"];
+            $filePath .= $fileName;
+            $stmt->bindParam(':profile_image', $filePath);
+        }
         $stmt->execute();
         }
         if($stmt->rowCount() == 0){
@@ -65,7 +73,15 @@ class Administrators_Model extends Model{
         $stmt->bindParam(':phone', $_POST['phone']);
         $stmt->bindParam(':password', $_POST['password']);
         $stmt->bindParam(':email', $_POST['email']);
-        $stmt->bindParam(':profile_image', $_POST['profile_image']);
+        $filePath = "http://localhost/theschool/uploads/";
+        if ( $_FILES['profile_image']['name'] == ''){
+            $filePath .= 'default-user.png';
+            $stmt->bindParam(':profile_image', $filePath);
+        } else{
+            $fileName = $_FILES["profile_image"]["name"];
+            $filePath .= $fileName;
+            $stmt->bindParam(':profile_image', $filePath);
+        }
         $stmt->execute();
         if ($stmt->rowCount() == 0){
             throw new Exception('No Student affected.');
@@ -109,13 +125,13 @@ class Administrators_Model extends Model{
     foreach ($data as $key => $value) {
         $table .="<li class='adminListItem'>";
         $table .= "<div class='listItemWrapper'>";
-        $table .= "<a href='../TheSchool/Administrators/Get/$value[ID]' target='_self'>";
-        $table .= "<div>$value[ID]</div>";
+        $table .= "<a href='http://localhost/TheSchool/Administrators/Get/$value[ID]' target='_self'>";
+        // $table .= "<div>$value[ID]</div>";
         $table .= "<div>$value[name]</div>";
         $table .= "<div>$value[role]</div>";
         $table .="<div>$value[phone]</div>";
         $table .="<div>$value[email]</div>";
-//        $table .="<div>$value[profile_image]</div>";
+        $table .="<div><img src='$value[profile_image]'></div>";
         $table .= "</a>";
         $table .= "</div>";
         $table .= "</li>";

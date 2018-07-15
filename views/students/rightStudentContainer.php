@@ -17,7 +17,7 @@
                     $courses = $courseController->GetAllCourses();
                     // print_r($courses);
                     foreach ($courses as $key => $course):?>
-                        <input type="checkbox" name="courses" id="<?php echo "$course[name]" ?>" value="<?php echo "$course[name]" ?>">
+                        <input type="checkbox" name="courses[]" id="<?php echo "$course[name]" ?>" value="<?php echo "$course[name]" ?>">
                         <label for="<?php echo "$course[name]" ?>"><?php echo "$course[name]" ?></label>
                         <?php endforeach ?>
                 </div>

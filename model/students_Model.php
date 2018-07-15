@@ -48,10 +48,14 @@ class Students_Model extends Model {
             $stmt->bindParam(':Name', $_POST['Name']);
             $stmt->bindParam(':phone', $_POST['phone']);
             $stmt->bindParam(':email', $_POST['email']);
-            if ( $_POST['profile_image'] == ''){
-                $stmt->bindParam(':profile_image', "http://localhost/theschool/default-user.png");
+            $filePath = "http://localhost/theschool/uploads/";
+            if ( $_FILES['profile_image']['name'] == ''){
+                $filePath .= 'default-user.png';
+                $stmt->bindParam(':profile_image', $filePath);
             } else{
-                $stmt->bindParam(':profile_image', $_POST['profile_image']);
+                $fileName = $_FILES["profile_image"]["name"];
+                $filePath .= $fileName;
+                $stmt->bindParam(':profile_image', $filePath);
             }
             $stmt->execute();
             }
@@ -77,10 +81,14 @@ class Students_Model extends Model {
             $stmt->bindParam(':Name', $_POST['Name']);
             $stmt->bindParam(':phone', $_POST['phone']);
             $stmt->bindParam(':email', $_POST['email']);
-            if ( $_POST['profile_image'] == ''){
-                $stmt->bindParam(':profile_image', 'http://localhost/theschool/default-user.png');
+            $filePath = "http://localhost/theschool/uploads/";
+            if ( $_FILES['profile_image']['name'] == ''){
+                $filePath .= 'default-user.png';
+                $stmt->bindParam(':profile_image', $filePath);
             } else{
-                $stmt->bindParam(':profile_image', $_POST['profile_image']);
+                $fileName = $_FILES["profile_image"]["name"];
+                $filePath .= $fileName;
+                $stmt->bindParam(':profile_image', $filePath);
             }
             $stmt->execute();
             if ($stmt->rowCount() == 0){
@@ -125,11 +133,11 @@ class Students_Model extends Model {
          foreach ($data as $key => $value) {
             $table .="<li class='studentListItem'>";
             $table .= "<div><a href='http://localhost/theSchool/Students/Get/$value[ID]' target='_self'>";
-            $table .= "<div>$value[ID]</div>";
+            // $table .= "<div>$value[ID]</div>";
+            $table .="<div><img src='$value[profile_image]'></div>";
             $table .= "<div>$value[Name]</div>";
             $table .="<div>$value[phone]</div>";
             $table .="<div>$value[email]</div>";
-            $table .="<div>$value[profile_image]</div>";
             $table .= "</a></div></li>";
          }
          $table .= "</ul>";

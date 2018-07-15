@@ -24,7 +24,7 @@ class Bootstrap {
     }
 
     private function _parseParams() {
-        if($_SESSION['loggedIn']){
+        if(Session::get('loggedIn')){
             $uri = isset($_GET['uri']) ? $_GET['uri'] : 'theSchool/index';
         } else {
             $uri = isset($_GET['uri']) ? $_GET['uri'] : 'login/login';
@@ -51,7 +51,7 @@ class Bootstrap {
     }
 
     private function _execute() {
-        if ($this->_p1 && method_exists($this->_controllerObj, $this->_action)) {
+         if ($this->_p1 && method_exists($this->_controllerObj, $this->_action)) {
             // $this->_controllerObj->a = $this->_p1;
             $this->_controllerObj->{$this->_action}($this->_p1);
             return;

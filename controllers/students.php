@@ -38,10 +38,12 @@ class Students extends Controller {
     }
 
     private function Insert(){
+        $this->uploadFile();
         $this->_view->rightInfo = $this->_model->Insert();
         $this->_view->render("leftSchoolContainer", "rightInfoContainer");
     }
     private function Update(){
+        $this->uploadFile();
         $this->_view->message = $this->_model->Update();
         $this->_view->render("leftSchoolContainer", "rightInfoContainer");
     }
@@ -52,17 +54,6 @@ class Students extends Controller {
     
     public function GetAll(){
         return $this->_model->GetAll()->ToHTML();
-        // $this->_view->rightContent = '';
-        // $this->_view->leftContent = $this->_model->GetAll()->ToHTML();
-        // $this->_view->render('students/leftContainer','students/rightContainer');
-        /*
-        TheSchool::_view->ID = '';
-        TheSchool::_view->name = '';
-        TheSchool::_view->phone = '';
-        TheSchool::_view->email = '';
-        TheSchool::_view->profile_image = '';
-        TheSchool::_view->rightContent = '';
-        */
     }
     
     

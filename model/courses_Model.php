@@ -38,7 +38,15 @@ Class Courses_Model extends Model {
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':name', $_POST['name']);
             $stmt->bindParam(':description', $_POST['description']);
-            $stmt->bindParam(':profile_image', $_POST['profile_image']);
+            $filePath = "http://localhost/theschool/uploads/";
+            if ( $_FILES['profile_image']['name'] == ''){
+                $filePath .= 'default-course.png';
+                $stmt->bindParam(':profile_image', $filePath);
+            } else{
+                $fileName = $_FILES["profile_image"]["name"];
+                $filePath .= $fileName;
+                $stmt->bindParam(':profile_image', $filePath);
+            }
             $stmt->execute();
         }
         if($stmt->rowCount() == 0){
@@ -53,11 +61,20 @@ Class Courses_Model extends Model {
 
   public function Update(){
     try {
-        $sql = "UPDATE `theschool`.`courses` SET `name` = :name,`description` = :description,`profile_image` = :profile_image WHERE `ID` = :ID;";
+        $sql = "UPDATE `theschool`.`courses` SET `name` = :name,`description` = :description,`image` = :image WHERE `ID` = :ID;";
         $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':ID', $_POST['ID']);
         $stmt->bindParam(':name', $_POST['name']);
         $stmt->bindParam(':description', $_POST['description']);
-        $stmt->bindParam(':profile_image', $_POST['profile_image']);
+        $filePath = "http://localhost/theschool/uploads/";
+        if ( $_FILES['profile_image']['name'] == ''){
+            $filePath .= 'default-course.jpg';
+            $stmt->bindParam(':image', $filePath);
+        } else{
+            $fileName = $_FILES["profile_image"]["name"];
+            $filePath .= $fileName;
+            $stmt->bindParam(':image', $filePath);
+        }
         $stmt->execute();
         if ($_POST['name'] == "" || $_POST['description'] == ""){
             throw new Exception('Please Fill Out All Fields with a *');
@@ -104,11 +121,9 @@ Class Courses_Model extends Model {
     foreach ($data as $key => $value) {
         $list .="<li class='courseListItem'>";
         $list .="<div class='listItemWrapper'>";
-        $list .="<a href='../TheSchool/Courses/Get/$value[ID]' target='_self'>";
-        $list .="<div>$value[ID]</div>";
+        $list .="<a href='http://localhost/TheSchool/Courses/Get/$value[ID]' target='_self'>";
+        $list .="<div><img src='$value[image]'></div>";
         $list .="<div>$value[name]</div>";
-        $list .="<div>$value[description]</div>";
-        $list .="<div>$value[image]</div>";
         $list .="</a>";
         $list .="</div>";
         $list .="</li>";

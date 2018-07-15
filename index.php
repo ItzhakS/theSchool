@@ -13,6 +13,7 @@ spl_autoload_register(function($class) {
         exit();
     }
 });
+
 Session::init();
 setConfig();
 $app = new Bootstrap();
