@@ -75,7 +75,7 @@ class Students_Model extends Model {
     */
     public function Update(){
         try {
-            $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email,`profile_image` = :profile_image WHERE `ID` = :ID;";
+            $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email,`profile_image` = :profile_image WHERE `ID` = :ID; DELETE FROM `theschool`.`link_students_courses` WHERE `studentID` = :ID";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':ID', $_POST['ID']);
             $stmt->bindParam(':Name', $_POST['Name']);
@@ -90,7 +90,15 @@ class Students_Model extends Model {
                 $filePath .= $fileName;
                 $stmt->bindParam(':profile_image', $filePath);
             }
+            $coursesArr = $_POST['courses'];
             $stmt->execute();
+            foreach ($coursesArr as $course) {
+                $sql = "UPDATE `theschool`.`link_students_courses` SET `studentID` = :studentID, `courseID` = :courseID;";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(':studentID', $_POST['ID']);
+                $stmt->bindParam(':courseID', $course);
+                $stmt->execute();
+            }
             if ($stmt->rowCount() == 0){
                 throw new Exception('No Student affected.');
             } else if($_POST['Name'] == "" || $_POST['phone'] == "" || $_POST['email'] == ""){

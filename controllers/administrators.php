@@ -43,6 +43,7 @@ class Administrators extends Controller{
 
 
   private function Insert(){
+    $this->uploadFile();
     $this->_model->Insert();
     $this->_view->leftContent = $this->GetAll();
     $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
@@ -53,6 +54,7 @@ class Administrators extends Controller{
   }
 
   private function Update(){
+    $this->uploadFile();
     $this->_view->rightContent = $this->_model->Update();;
     $this->_view->leftContent = $this->GetAll();
     $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');

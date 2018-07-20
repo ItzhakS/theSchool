@@ -29,7 +29,7 @@ Class Courses_Model extends Model {
 
   public function Insert(){
     try {
-        $sql = "INSERT INTO `theschool`.`courses`(`name`,`description`, `profile_image`) VALUES (:name, :description, :profile_image);";
+        $sql = "INSERT INTO `theschool`.`courses`(`name`,`description`, `image`) VALUES (:name, :description, :image);";
         if($_POST['name'] == "" || $_POST['description'] == ""){
             throw new Exception('Please Fill Out All Fields with a *');
         // } else if(preg_match('~[0-9]+~', $_POST['Name'])){
@@ -41,11 +41,11 @@ Class Courses_Model extends Model {
             $filePath = "http://localhost/theschool/uploads/";
             if ( $_FILES['profile_image']['name'] == ''){
                 $filePath .= 'default-course.png';
-                $stmt->bindParam(':profile_image', $filePath);
+                $stmt->bindParam(':image', $filePath);
             } else{
                 $fileName = $_FILES["profile_image"]["name"];
                 $filePath .= $fileName;
-                $stmt->bindParam(':profile_image', $filePath);
+                $stmt->bindParam(':image', $filePath);
             }
             $stmt->execute();
         }

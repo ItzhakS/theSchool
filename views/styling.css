@@ -87,7 +87,6 @@ form.loginForm input:last-child:active{
 
 .leftContainer-wrapper{
     height: 85vh;
-    padding: 15px;
     border-right: 1px solid black;
     /*grid-column: ;*/
 }
@@ -96,7 +95,7 @@ form.loginForm input:last-child:active{
     display: grid;
     height: inherit;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 19px;
+    /* grid-gap: 19px; */
 }
 
 .coursesWrapper, .studentsWrapper{
@@ -112,6 +111,7 @@ form.loginForm input:last-child:active{
     display: flex;
     flex-flow: row;
     justify-content: space-between;
+    padding: 0 10px;
     box-shadow:inset 0 -1px 0px 0 rgba(0,0,0,0.75);
 }
 
@@ -120,6 +120,9 @@ form.loginForm input:last-child:active{
     height: 80%;
 }
 
+.courseInfo{
+    
+}
 .infoContainer{
     display: flex;
     grid-column: 2/ span 2;

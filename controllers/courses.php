@@ -32,11 +32,13 @@ class Courses extends Controller{
 
 
   private function Insert(){
+    $this->uploadFile();
     $this->_view->rightInfo = $this->_model->Insert();
     $this->_view->render("leftSchoolContainer", "rightInfoContainer");
   }
 
   private function Update(){
+    $this->uploadFile();
       $this->_view->rightInfo= $this->_model->Update();
       $this->_view->render("leftSchoolContainer", "rightInfoContainer");
   }
