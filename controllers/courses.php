@@ -21,6 +21,10 @@ class Courses extends Controller{
     $this->_view->render("leftSchoolContainer", "courses/rightCourseInfo");
   }
 
+  public function showAllStudents($ID){
+    return $this->_model->showAllStudents($ID);
+  }
+
   public function EditCourse($courseID){
     $result = $this->_model->Get($courseID);
     $this->_view->ID = $result['ID'];

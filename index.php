@@ -26,6 +26,6 @@ function setConfig() {
     config::$database = 'theschool';
     config::$user = 'root';
     config::$password = '';
-    config::$salt_prefix = 'bonzo';
-    config::$salt_suffix = 'morgan';
+    config::$salt_prefix = 'bonzai';
+    config::$salt_suffix = 'cookies';
 }

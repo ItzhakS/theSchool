@@ -9,7 +9,7 @@ class Login_Model extends Model {
     public function authenticate() {
         $retValue = false;
         $login = $_POST['login'];
-        $password = /*sha1(config::$salt_prefix . */$_POST['password']/* . config::$salt_suffix)*/;
+        $password = sha1(config::$salt_prefix . $_POST['password']. config::$salt_suffix);
         $sql = "SELECT * FROM `administrators` WHERE name=:name and password=:pswd";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(":name", $login);
@@ -19,6 +19,7 @@ class Login_Model extends Model {
         if ($this->result) {
             Session::set('role', $this->result['role']);
             Session::set('name', $this->result['name']);
+            Session::set('image', $this->result['profile_image']);
             Session::set('loggedIn' , true);
             $retValue = true;
         } else {

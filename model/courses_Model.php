@@ -27,6 +27,16 @@ Class Courses_Model extends Model {
     }
   }
 
+  
+  public function showAllStudents($ID){
+    $sql = "SELECT `students`.* FROM STUDENTS where `students`.`ID` in (select link_students_courses.`studentID` from link_students_courses where link_students_courses.`courseID` = :courseID);";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':courseID', $ID);
+    $stmt->execute();
+    $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $this->result;
+  }
+
   public function Insert(){
     try {
         $sql = "INSERT INTO `theschool`.`courses`(`name`,`description`, `image`) VALUES (:name, :description, :image);";

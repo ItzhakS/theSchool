@@ -2,9 +2,9 @@
         <div class="rightContainer">
             <form class="editForm"action="<?php echo Config::URL ?>Students/" method="POST" enctype="multipart/form-data">
                 <label style="visibility: hidden;">ID: <input name="ID" type="number" value="<?php echo $this->ID; ?>" style="visibility: hidden;"></label>
-                <label>Name: <input name="Name" type="text" value="<?php echo $this->Name; ?>">*</label>
-                <label>Phone Number: <input name="phone" type="number" value="<?php echo $this->phone; ?>">*</label>
-                <label>Email: <input name="email" type="email" value="<?php echo $this->email; ?>">*</label>
+                <label>Name: <input name="Name" type="text" value="<?php echo $this->Name; ?>" required>*</label>
+                <label>Phone Number: <input name="phone" type="number" value="<?php echo $this->phone; ?>" required>*</label>
+                <label>Email: <input name="email" type="email" value="<?php echo $this->email; ?>" required>*</label>
                 <label>Profile Image: <input name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" accept=".jpg, .jpeg, .png"></label>
                 <br>
                 <div class="btnContainer">
@@ -14,11 +14,18 @@
                 </div>
                 <div class="coursesContainer">
                 <?php $courseController = new Courses;
-                    $courses = $courseController->GetAllCourses();
+                    $coursesList = $courseController->GetAllCourses();
+                    $studentController = new Students;
+                    $coursesEnrolled = $studentController->GetStudentsCourses($this->ID);
                     // print_r($courses);
-                    foreach ($courses as $key => $course):?>
-                        <input type="checkbox" name="courses[]" id="<?php echo "$course[name]" ?>" value="<?php echo "$course[name]" ?>">
-                        <label for="<?php echo "$course[name]" ?>"><?php echo "$course[name]" ?></label>
+                    foreach ($coursesList as $key => $course):?>
+                    <label for="<?php echo "$course[name]" ?>">
+                    <?php if(in_array($course, $coursesEnrolled)):?>
+                        <input type="checkbox" name="courses[]" value="<?php echo "$course[name]" ?>" checked/>
+                    <?php else:?>
+                        <input type="checkbox" name="courses[]" value="<?php echo "$course[name]" ?>"/>
+                    <?php endif?>
+                        <?php echo "$course[name]" ?></label>
                         <?php endforeach ?>
                 </div>
             </form>

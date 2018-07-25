@@ -4,3 +4,6 @@
         <label>Password: </label><input type="password" name="password">
         <input type="submit" value="Login">
 </form>
+<div style="text-align: center">
+<?php echo "$this->message";?>
+</div>

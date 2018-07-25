@@ -75,29 +75,24 @@ class Students_Model extends Model {
     */
     public function Update(){
         try {
-            $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email,`profile_image` = :profile_image WHERE `ID` = :ID; DELETE FROM `theschool`.`link_students_courses` WHERE `studentID` = :ID";
-            $stmt = $this->db->prepare($sql);
+            $filePath = "http://localhost/theschool/uploads/";
+            if($_FILES['profile_image']["name"] != ''){
+                $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email, `profile_image` = :profile_image WHERE `ID` = :ID;";
+                $stmt = $this->db->prepare($sql);
+                $fileName = $_FILES["profile_image"]["name"];
+                $filePath .= $fileName;
+                $stmt->bindParam(':profile_image', $filePath);
+            } else{
+                $sql = "UPDATE `theschool`.`students` SET `Name` = :Name,`phone` = :phone, `email` = :email, WHERE `ID` = :ID;";
+                $stmt = $this->db->prepare($sql);
+                }
             $stmt->bindParam(':ID', $_POST['ID']);
             $stmt->bindParam(':Name', $_POST['Name']);
             $stmt->bindParam(':phone', $_POST['phone']);
             $stmt->bindParam(':email', $_POST['email']);
-            $filePath = "http://localhost/theschool/uploads/";
-            if ( $_FILES['profile_image']['name'] == ''){
-                $filePath .= 'default-user.png';
-                $stmt->bindParam(':profile_image', $filePath);
-            } else{
-                $fileName = $_FILES["profile_image"]["name"];
-                $filePath .= $fileName;
-                $stmt->bindParam(':profile_image', $filePath);
-            }
-            $coursesArr = $_POST['courses'];
             $stmt->execute();
-            foreach ($coursesArr as $course) {
-                $sql = "UPDATE `theschool`.`link_students_courses` SET `studentID` = :studentID, `courseID` = :courseID;";
-                $stmt = $this->db->prepare($sql);
-                $stmt->bindParam(':studentID', $_POST['ID']);
-                $stmt->bindParam(':courseID', $course);
-                $stmt->execute();
+            if($_POST['courses']){
+                self::studentCourses();
             }
             if ($stmt->rowCount() == 0){
                 throw new Exception('No Student affected.');
@@ -109,6 +104,38 @@ class Students_Model extends Model {
           } catch (Exception $ex) {
             return $ex->getMessage();
         }
+    }
+
+    public function studentCourses(){
+        $courseList = self::getAllCourses();
+        $coursesPost = $_POST['courses'];
+        $coursesArr = [];
+        
+        foreach ($courseList as $course) {
+            foreach ($coursesPost as $value) {
+                if($value == $course['name']){
+                    array_push($coursesArr, $course['ID']);
+                }
+            }
+        }
+        foreach ($coursesArr as $key) {
+            $sql = "INSERT `theschool`.`link_students_courses` SET `studentID` = :studentID, `courseID` = :courseID;";
+            $stmt = $this->db->prepare($sql);
+            $courseID = $key;
+            $stmt->bindParam(':studentID', $_POST['ID']);
+            $stmt->bindParam(':courseID', $courseID);
+            $stmt->execute();
+        }
+    }
+
+    public function getAllCourses()
+    {
+        $sql = "SELECT * FROM `theschool`.`courses`; DELETE FROM `theschool`.`link_students_courses` WHERE studentID = :studentID;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':studentID', $_POST['ID']);
+        $stmt->execute();
+        $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->result;
     }
     
      public function Delete(){
@@ -144,8 +171,6 @@ class Students_Model extends Model {
             // $table .= "<div>$value[ID]</div>";
             $table .="<div><img src='$value[profile_image]'></div>";
             $table .= "<div>$value[Name]</div>";
-            $table .="<div>$value[phone]</div>";
-            $table .="<div>$value[email]</div>";
             $table .= "</a></div></li>";
          }
          $table .= "</ul>";

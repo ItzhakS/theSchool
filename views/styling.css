@@ -115,13 +115,41 @@ form.loginForm input:last-child:active{
     box-shadow:inset 0 -1px 0px 0 rgba(0,0,0,0.75);
 }
 
-.studentsList, .coursesList{
+.studentsList, .coursesList, .adminList{
     overflow-y: auto;
     height: 80%;
 }
 
 .courseInfo{
-    
+    display: flex;
+    grid-column: 2/ span 2;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+}
+
+.courseInfo img{
+    height: 140px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.showAllStudents, .studentsCourses{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    overflow-y: auto;
+}
+.showAllStudents div img, .studentsCourses div img{
+    height: 60px;
+    width: 50px;
+}
+
+.coursesContainer{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 .infoContainer{
     display: flex;
@@ -182,7 +210,10 @@ form.loginForm input:last-child:active{
 }
 
 .infoContent{
-    
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 }
 
 .adminInfo{
@@ -203,8 +234,9 @@ form.loginForm input:last-child:active{
 }
 
 .rightContainer-wrapper{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 25% 50% 25%;
     height: 90vh;
     grid-column: 2/ span 2;
 }
@@ -217,19 +249,20 @@ form.editForm, form.editAdminForm{
     display: grid;
 }
 
-form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i], {
+form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i], form.editCourseForm {
     width: 60px;
 }
 
 .btnContainer{
     display: flex;
     flex-direction: row;
-
+    justify-content: center;
 }
 
 li{
     margin-top: 10px;
-    list-style: none; 
+    margin-bottom: 20px;
+    list-style: none;
 }
 
 li a{
@@ -237,12 +270,29 @@ li a{
     text-decoration: none;
 }
 
-.listItemWrapper:hover{
+li:hover{
     background-color: rgb(209, 209, 209);
 }
 
 img{
     height: 50px;
+}
+
+.leftAdminWrapper{
+    height: 85vh;
+    border-right: 1px solid black;
+}
+
+.leftAdminContainer{
+    height: 100%;
+}
+
+.adminHeader{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-shadow: inset 0 -1px 0px 0 rgba(0,0,0,0.75);
 }
 
 .footerWrapper{

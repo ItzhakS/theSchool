@@ -15,10 +15,11 @@ class Login extends Controller {
         if ($this->_model->authenticate()) {
             header('location:' . config::URL . 'theSchool/index');
         } else {
-            $this->logout();
+            $this->_view->message = "Incorrect Username or Password";
+            $this->_view->render('login/index','');
         }
     }
-
+    
     public function logout() {
         Session::remove('loggedIn');
         Session::remove('role');

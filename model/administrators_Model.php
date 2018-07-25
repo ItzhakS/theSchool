@@ -35,13 +35,13 @@ class Administrators_Model extends Model{
         } else if(preg_match('~[0-9]+~', $_POST['name'])){
             throw new Exception('Do not add numbers to Admins name.');
         }else{
-        
+        $password = sha1(config::$salt_prefix.$_POST['password'].config::$salt_suffix);        
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':name', $_POST['name']);
         $stmt->bindParam(':phone', $_POST['phone']);
         $stmt->bindParam(':role', $_POST['role']);
         $stmt->bindParam(':email', $_POST['email']);
-        $stmt->bindParam(':password', $_POST['password']);
+        $stmt->bindParam(':password', $password);
         $filePath = "http://localhost/theschool/uploads/";
         if ( $_FILES['profile_image']['name'] == ''){
             $filePath .= 'default-user.png';
@@ -64,33 +64,42 @@ class Administrators_Model extends Model{
   }
 
   public function Update(){
-    try {
-        $sql = "UPDATE `theschool`.`administrators` SET `name` = :name,`phone` = :phone, `role` = :role, `email` = :email, `password` = :password, `profile_image` = :profile_image WHERE `ID` = :ID;";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':ID', $_POST['ID']);
-        $stmt->bindParam(':name', $_POST['name']);
-        $stmt->bindParam(':role', $_POST['role']);
-        $stmt->bindParam(':phone', $_POST['phone']);
-        $stmt->bindParam(':password', $_POST['password']);
-        $stmt->bindParam(':email', $_POST['email']);
-        $filePath = "http://localhost/theschool/uploads/";
-        if ( $_FILES['profile_image']['name'] == ''){
-            $filePath .= 'default-user.png';
-            $stmt->bindParam(':profile_image', $filePath);
-        } else{
-            $fileName = $_FILES["profile_image"]["name"];
-            $filePath .= $fileName;
-            $stmt->bindParam(':profile_image', $filePath);
-        }
-        $stmt->execute();
-        if ($stmt->rowCount() == 0){
-            throw new Exception('No Student affected.');
-        } else if($_POST['name'] == "" || $_POST['phone'] == "" || $_POST['role'] == "" || $_POST['email'] == "" || $_POST['password'] == ""){
-            throw new Exception('Please Fill Out All Fields with a *');
-        } else{
-        return "Successfully Updated the students info";
-        }
-      } catch (Exception $ex) {
+      try {
+          if($_POST['name'] == "" || $_POST['phone'] == "" || $_POST['role'] == "" || $_POST['email'] == ""){
+              throw new Exception('Please Fill Out All Fields with a *');
+            } else{
+                $filePath = "http://localhost/theschool/uploads/";
+                if($_POST['password'] != '' && $_FILES['profile_image']["name"] != ''){
+                    $sql = "UPDATE `theschool`.`administrators` SET `name` = :name,`phone` = :phone, `role` = :role, `email` = :email, `password` = :password, `profile_image` = :profile_image WHERE `ID` = :ID;";
+                    $stmt = $this->db->prepare($sql);
+                    $password = sha1(config::$salt_prefix. $_POST['password'].config::$salt_suffix);
+                    $stmt->bindParam(':password', $password);
+                    $fileName = $_FILES["profile_image"]["name"];
+                    $filePath .= $fileName;
+                    $stmt->bindParam(':profile_image', $filePath);
+                } else if($_FILES['profile_image']["name"] != ''){
+                    $sql = "UPDATE `theschool`.`administrators` SET `name` = :name,`phone` = :phone, `role` = :role, `email` = :email, `profile_image` = :profile_image WHERE `ID` = :ID;";
+                    $stmt = $this->db->prepare($sql);
+                    $fileName = $_FILES["profile_image"]["name"];
+                    $filePath .= $fileName;
+                    $stmt->bindParam(':profile_image', $filePath);
+                } else{
+                    $sql = "UPDATE `theschool`.`administrators` SET `name` = :name,`phone` = :phone, `role` = :role, `email` = :email, WHERE `ID` = :ID;";
+                    $stmt = $this->db->prepare($sql);
+                    }
+            $stmt->bindParam(':ID', $_POST['ID']);
+            $stmt->bindParam(':name', $_POST['name']);
+            $stmt->bindParam(':role', $_POST['role']);
+            $stmt->bindParam(':phone', $_POST['phone']);
+            $stmt->bindParam(':email', $_POST['email']);
+            $stmt->execute();
+            if ($stmt->rowCount() == 0){
+                throw new Exception('No Admin affected.');
+            } else {
+                return "Successfully Updated the Admins info";
+                }
+            }
+        } catch (Exception $ex) {
         return $ex->getMessage();
     }
   }
@@ -126,15 +135,10 @@ class Administrators_Model extends Model{
         $table .="<li class='adminListItem'>";
         $table .= "<div class='listItemWrapper'>";
         $table .= "<a href='http://localhost/TheSchool/Administrators/Get/$value[ID]' target='_self'>";
-        // $table .= "<div>$value[ID]</div>";
+        $table .="<div><img src='$value[profile_image]'></div>";
         $table .= "<div>$value[name]</div>";
         $table .= "<div>$value[role]</div>";
-        $table .="<div>$value[phone]</div>";
-        $table .="<div>$value[email]</div>";
-        $table .="<div><img src='$value[profile_image]'></div>";
-        $table .= "</a>";
-        $table .= "</div>";
-        $table .= "</li>";
+        $table .= "</a></div></li>";
     }
     $table .= "</ul>";
     return $table;
