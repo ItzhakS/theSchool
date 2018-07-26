@@ -235,18 +235,22 @@ form.loginForm input:last-child:active{
 
 .rightContainer-wrapper{
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 2fr 3fr 1fr;
     grid-template-rows: 25% 50% 25%;
     height: 90vh;
     grid-column: 2/ span 2;
 }
 
 .rightContainer{
-    margin-left: 10px;
+    font-size: 1.3em;
+    grid-column: 2 /span 3;
+    grid-row: 2;
 }
 
 form.editForm, form.editAdminForm{
     display: grid;
+    grid-template-columns: 27% 34% 10%;
+    grid-row-gap: 10px;
 }
 
 form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i], form.editCourseForm {
@@ -254,9 +258,10 @@ form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i],
 }
 
 .btnContainer{
+    grid-column: 2;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
 }
 
 li{
@@ -276,6 +281,7 @@ li:hover{
 
 img{
     height: 50px;
+    width: 50px;
 }
 
 .leftAdminWrapper{

@@ -24,8 +24,8 @@ class Administrators extends Controller{
     $this->_view->phone = $result['phone'];
     $this->_view->email = $result['email'];
     $this->_view->password = $result['password'];
+    $this->_view->profile_image = $result['profile_image'];
     // $this->_view->leftContent = $this->GetAll();    
-    // $this->_view->profile_image = $result['profile-image'];
     // $this->_view->rightContent = '';
     $this->_view->render('administrators/leftContainer','administrators/rightAdminInfo');
 }
