@@ -7,6 +7,17 @@ class Session {
         if (self::$_sessionStarted == false) {
             session_start();
             self::$_sessionStarted = true;
+            if(isset($_SESSION['timeout'])){
+                $inactive = 1200;
+                $session_life = time() - $_SESSION['timeout']; 
+                if($session_life > $inactive) {
+                    session_unset();
+                    session_destroy();
+                    self::$_sessionStarted == false;
+                    header('location:' . config::URL . 'login/login');
+                }
+            }
+            $_SESSION['timeout']=time();
         }
     }
     public static function set($key, $value) {

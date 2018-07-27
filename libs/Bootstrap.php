@@ -24,10 +24,15 @@ class Bootstrap {
     }
 
     private function _parseParams() {
-        if(!Session::get('loggedIn') && $_GET['uri'] != "login/authenticate"){
-            $uri = 'login/login';
-        } else {
-            $uri = isset($_GET['uri']) ? $_GET['uri'] : 'theSchool/index';
+        if(isset($_GET['uri'])){
+            if(!Session::get('loggedIn') && $_GET['uri'] != "login/authenticate"){
+                $uri = 'login/login';
+            } else {
+                $uri = $_GET['uri'];
+            }
+        }else{
+            if(!Session::get('loggedIn')) $uri = 'login/login';
+            else $uri = 'theSchool/index';
         }
         $uri = rtrim($uri, '/');
         $uri = explode('/', $uri);

@@ -7,6 +7,10 @@ html, body{
     width: 100%;
     padding: 0;
     margin: 0;
+    background-image: url(../Green-School-Board-Background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: -58px;
 }
 
 header.banner-wrapper{
@@ -83,6 +87,7 @@ form.loginForm input:last-child:active{
 .mainContent{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    /* background-image: url(../green-chalkboard.jpg); */
 }
 
 .leftContainer-wrapper{
