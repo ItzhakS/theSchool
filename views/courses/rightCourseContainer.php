@@ -1,3 +1,6 @@
+<?php $courseController = new Courses;
+      $students = $courseController->showAllStudents($this->ID);
+  ?>
     <div class="rightContainer-wrapper">
         <div class="rightContainer">
             <form class="editCourseForm" action="<?php echo Config::URL ?>Courses/" method="POST" id="courseForm" enctype="multipart/form-data">
@@ -7,9 +10,13 @@
                 <label>Profile Image: <input name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" accept=".jpg, .jpeg, .png"></label>
                 <br>
                 <div class="btnContainer">
-                    <input type="submit" name="ACTION" value="Insert">
+                <?php if(!$this->ID): ?>
+                        <input type="submit" name="ACTION" value="Insert">
+                    <?php endif ?>
                     <input type="submit" name="ACTION" value="Update">
+                    <?php $studentCount = count($students); if($studentCount == 0):?>
                     <input type="submit" name="ACTION" value="Delete">
+                    <?php endif?>
                 </div>
             </form>
         </div>

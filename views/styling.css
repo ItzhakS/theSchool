@@ -120,9 +120,9 @@ form.loginForm input:last-child:active{
     box-shadow:inset 0 -1px 0px 0 rgba(0,0,0,0.75);
 }
 
-.studentsList, .coursesList, .adminList{
+.studentsList, .courseList, .adminList{
     overflow-y: auto;
-    height: 80%;
+    height: 82%;
 }
 
 .courseInfo{
@@ -135,13 +135,14 @@ form.loginForm input:last-child:active{
     font-size: 2em;
 }
 
-.courseInfo img{
+.courseInfo img, .studentInfoContainer img, .adminInfo img{
     height: 140px;
     width: 250px;
     margin: 0 auto;
 }
 
 .showAllStudents, .studentsCourses{
+    height: 20vh;
     display: grid;
     grid-template-columns: 50% 50%;
     overflow-y: auto;
@@ -194,10 +195,6 @@ form.loginForm input:last-child:active{
     text-align: center;
 }
 
-.studentInfoContainer img{
-    height: 140px;
-}
-
 .studentInfoContainer div a{
     text-decoration: none;
     color: #f7b11b;
@@ -229,10 +226,6 @@ form.loginForm input:last-child:active{
 
 }
 
-.adminInfo img{
-    height: 140px;
-}
-
 .adminInfo div a{
     text-decoration: none;
     color: #f7b11b;
@@ -252,13 +245,18 @@ form.loginForm input:last-child:active{
     grid-row: 2;
 }
 
-form.editForm, form.editAdminForm{
+form.editForm, form.editCourseForm {
+    display: flex;
+    flex-direction: column;
+}
+
+form.editAdminForm{
     display: grid;
     grid-template-columns: 27% 34% 10%;
     grid-row-gap: 10px;
 }
 
-form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i], form.editCourseForm {
+form.editForm input[type="submit" i], form.editAdminForm input[type="submit" i]{
     width: 60px;
 }
 

@@ -17,6 +17,10 @@ class Administrators extends Controller{
   }
 
   public function Get($adminID = null){
+    if($adminID == 1 && Session::get('role') == 'Administrator'){
+      // $this->_view->
+      $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
+    }
     $result = $this->_model->Get($adminID);
     $this->_view->ID = $result['ID'];
     $this->_view->name = $result['name'];

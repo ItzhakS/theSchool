@@ -5,10 +5,12 @@
                 <label>Name: <input name="Name" type="text" value="<?php echo $this->Name; ?>" required>*</label>
                 <label>Phone Number: <input name="phone" type="number" value="<?php echo $this->phone; ?>" required>*</label>
                 <label>Email: <input name="email" type="email" value="<?php echo $this->email; ?>" required>*</label>
-                <label>Profile Image: <input name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" accept=".jpg, .jpeg, .png"></label>
+                <label id="fileList">Profile Image: <input id="fileElem" name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" onchange="handleFiles(this.files)" accept=".jpg, .jpeg, .png"></label>
                 <br>
                 <div class="btnContainer">
-                    <input type="submit" name="ACTION" value="Insert">
+                <?php if(!$this->ID): ?>
+                        <input type="submit" name="ACTION" value="Insert">
+                    <?php endif ?>
                     <input type="submit" name="ACTION" value="Update">
                     <input type="submit" name="ACTION" value="Delete">
                 </div>

@@ -6,7 +6,7 @@
     <div class="adminEmail"><?php echo $this->email;?></div>
     <?php if(Session::get('role') == 'owner'): ?>
     <div class="editBtn"><a href="<?php echo Config::URL ?>administrators/EditAdmin/<?php echo $this->ID?>">Edit</a></div>
-    <?php elseif ($this->role == 'Administrator' && Session::get('role') == 'Administrator') :?>
+    <?php elseif ($this->role == 'Administrator' || $this->role == 'Sales' && Session::get('role') == 'Administrator') :?>
     <div class="editBtn"><a href="<?php echo Config::URL ?>administrators/EditAdmin/<?php echo $this->ID?>">Edit</a></div>
     <?php endif?>
   </div>
