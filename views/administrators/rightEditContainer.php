@@ -7,7 +7,8 @@
                 <label>Phone Number: </label><input name="phone" type="number" value="<?php echo $this->phone; ?>">*
                 <label>Email: </label><input name="email" type="email" value="<?php echo $this->email; ?>">*
                 <label>Password: </label><input name="password" type="text" value="<?php echo $this->password; ?>">*
-                <label>Profile Image: </label><input name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" accept=".jpg, .jpeg, .png">
+                <label>Profile Image: </label><input id="fileElem" name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" onchange="handleFiles(this.files)" accept=".jpg, .jpeg, .png">
+                <span id="fileList"></span>
                 <br>
                 <div class="btnContainer">
                     <?php if(!$this->ID): ?>

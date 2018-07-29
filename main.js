@@ -15,7 +15,7 @@ function handleFiles(files) {
   if (!files.length) {
     fileList.innerHTML = "<p>No files selected!</p>";
   } else {
-    // fileList.innerHTML = "";
+    fileList.innerHTML = "";
 
       
       var img = document.createElement("img");

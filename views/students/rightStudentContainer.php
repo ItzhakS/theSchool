@@ -5,7 +5,8 @@
                 <label>Name: <input name="Name" type="text" value="<?php echo $this->Name; ?>" required>*</label>
                 <label>Phone Number: <input name="phone" type="number" value="<?php echo $this->phone; ?>" required>*</label>
                 <label>Email: <input name="email" type="email" value="<?php echo $this->email; ?>" required>*</label>
-                <label id="fileList">Profile Image: <input id="fileElem" name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" onchange="handleFiles(this.files)" accept=".jpg, .jpeg, .png"></label>
+                <label >Profile Image: <input id="fileElem" name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" onchange="handleFiles(this.files)" accept=".jpg, .jpeg, .png"></label>
+                <span id="fileList"></span>
                 <br>
                 <div class="btnContainer">
                 <?php if(!$this->ID): ?>

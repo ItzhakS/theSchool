@@ -7,7 +7,8 @@
                 <label style="visibility: hidden;">ID: <input name="ID" type="number" value="<?php echo $this->ID; ?>" style="visibility: hidden;"></label>
                 <label>Name: <input name="name" type="text" value="<?php echo $this->name; ?>">*</label>
                 <label>Description: <textarea rows="3" name="description" type="text" form="courseForm"><?php echo $this->description; ?></textarea>*</label>
-                <label>Profile Image: <input name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" accept=".jpg, .jpeg, .png"></label>
+                <label>Profile Image: <input id="fileElem" name="profile_image" type="file" value="<?php echo $this->profile_image; ?>" onchange="handleFiles(this.files)" accept=".jpg, .jpeg, .png"></label>
+                <span id="fileList"></span>
                 <br>
                 <div class="btnContainer">
                 <?php if(!$this->ID): ?>
