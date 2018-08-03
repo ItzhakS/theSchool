@@ -35,8 +35,8 @@ div.banner{
     display: flex;
     flex-flow: row;
 }
-.bannerRight{
-
+.loggedIn{
+    display: flex;
 }
 .schoolLogo{
     height: 50px;

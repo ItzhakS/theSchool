@@ -21,8 +21,11 @@
                 <?php if (Session::get('loggedIn')): ?>
             <div class="bannerRight">
                 <div class="loggedIn">
+                <div class="userImage">
+                    <img src="<?php echo Session::get('image');?>" alt="Profile Image" srcset="">
+                </div>
                     <div class="currentUser">
-                        <div class="userImage"></div>
+                        
                         <div class="userName">
                             <?php echo Session::get('name');?>
                         </div>
