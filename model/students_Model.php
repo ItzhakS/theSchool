@@ -58,6 +58,9 @@ class Students_Model extends Model {
                 $stmt->bindParam(':profile_image', $filePath);
             }
             $stmt->execute();
+            if($_POST['courses']){
+                self::studentCourses();
+            }
             }
             if($stmt->rowCount() == 0){
                 throw new Exception('Error: Student was not added. Try Again. Don\'t give up!');

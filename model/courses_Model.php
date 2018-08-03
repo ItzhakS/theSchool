@@ -100,7 +100,7 @@ Class Courses_Model extends Model {
 
   public function Delete(){
     try {
-        $sql = "DELETE FROM `theschool`.`students` WHERE ID = :ID;";
+        $sql = "DELETE FROM `theschool`.`courses` WHERE ID = :ID;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':ID', $_POST['ID']);
         $stmt->execute();
