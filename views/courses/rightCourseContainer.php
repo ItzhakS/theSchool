@@ -16,7 +16,7 @@
                     <?php endif ?>
                     <input type="submit" name="ACTION" value="Update">
                     <?php $studentCount = count($students); if($studentCount == 0):?>
-                    <input type="submit" name="ACTION" value="Delete">
+                    <input type="submit" name="ACTION" value="Delete" onclick="return confirm('Are you sure?')">
                     <?php endif?>
                 </div>
             </form>

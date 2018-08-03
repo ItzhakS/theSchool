@@ -13,7 +13,7 @@
                         <input type="submit" name="ACTION" value="Insert">
                     <?php endif ?>
                     <input type="submit" name="ACTION" value="Update">
-                    <input type="submit" name="ACTION" value="Delete">
+                    <input type="submit" name="ACTION" value="Delete" onclick="return confirm('Are you sure?')">
                 </div>
                 <div class="coursesContainer">
                 <?php $courseController = new Courses;

@@ -16,7 +16,7 @@
                     <?php endif ?>
                     <input type="submit" name="ACTION" value="Update">
                     <?php if(Session::get('name') != $this->name):?>
-                        <input type="submit" name="ACTION" value="Delete">
+                        <input type="submit" name="ACTION" value="Delete" onclick="return confirm('Are you sure?')">
                     <?php endif?>
                 </div>
             </form>
