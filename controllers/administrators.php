@@ -18,8 +18,9 @@ class Administrators extends Controller{
 
   public function Get($adminID = null){
     if($adminID == 1 && Session::get('role') == 'Administrator'){
-      // $this->_view->
+      $this->_view->message = 'Unauthorized Content!';
       $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
+      return;
     }
     $result = $this->_model->Get($adminID);
     $this->_view->ID = $result['ID'];
@@ -53,8 +54,8 @@ class Administrators extends Controller{
     $this->_view->render('administrators/leftContainer','administrators/rightInfoContainer');
   }
 
-  private function insertAdmin(){
-    $this->_view->render('administrators/leftContainer','administrators/rightContainer');
+  public function insertAdmin(){
+    $this->_view->render('administrators/leftContainer','administrators/rightEditContainer');
   }
 
   private function Update(){

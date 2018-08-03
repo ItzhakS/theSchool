@@ -5,6 +5,7 @@
       There are <?php $adminController = new Administrators;
       echo $adminController->displayInfo();?> Administrators in The School.
       </p>
+      <?php echo $this->message ?>
     </div> 
   </div>
 </div>
