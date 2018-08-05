@@ -1,6 +1,6 @@
-"# theSchool" 
+# theSchool
 
-"####Php Project"
+#### Php Project in MVC
 
 -----------------
 
